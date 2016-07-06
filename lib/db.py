@@ -1,7 +1,7 @@
 # coding=utf8
 # 数据库操作
 import MySQLdb
-from lib.httplog import httplog
+from lib.httplog import log
 from config_db import db
 
 
@@ -15,7 +15,7 @@ class Dict(dict):
         try:
             return self[key]
         except KeyError:
-            raise AttributeError(r"'Dict' object has no attribute '%s'" % key)
+            raise AttributeError(r"'Dict' 没找到 '%s'" % key)
 
     def __setattr__(self, key, value):
         self[key] = value
@@ -55,7 +55,7 @@ class _Connection():
             create.commit()
             return r
         except:
-            httplog.log.fatal(sql+'执行失败')
+            log('db').log.fatal(sql+'执行失败')
             create.rollback()
         finally:
             cursors.close()
@@ -70,7 +70,7 @@ class _Connection():
             create.commit()
             return r
         except:
-            httplog.log.fatal(sql+'执行失败')
+            log('db').log.fatal(sql+'执行失败')
             create.rollback()
         finally:
             cursors.close()
@@ -84,7 +84,7 @@ class _Connection():
             r = cursors.rowcount
             return r
         except:
-            httplog.log.fatal(sql+'执行失败')
+            log('db').log.fatal(sql+'执行失败')
         finally:
             cursors.close()
 
@@ -98,7 +98,7 @@ class _Connection():
                 names1 = [x[0] for x in cursore.description]
             return [Dict(names1, x) for x in cursore.fetchall()]
         except:
-            httplog.log.fatal(sql+'执行失败')
+            log('db').log.fatal(sql+'执行失败')
         finally:
             cursore.close()
 

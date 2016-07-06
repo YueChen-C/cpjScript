@@ -11,14 +11,14 @@ class MyThread(threading.Thread):
 
     def run(self):
         while True:
-            url = self.task.get()
-            self.method(url)
+            arr = self.task.get()
+            self.method(arr)
             self.task.task_done()
 
-def Threadstart(method,urls,num):
+def Threadstart(method,arrs,num):
     '''
     :param method:执行函数
-    :param urls: urls数组
+    :param arr: arr数组
     :param num: 线程数量
     :return:
     '''
@@ -28,8 +28,8 @@ def Threadstart(method,urls,num):
         t.setDaemon(True)
         t.start()
     # url入队列
-    for url in urls:
-        quene.put(url)
+    for arr in arrs:
+        quene.put(arr)
     quene.join()
 
 

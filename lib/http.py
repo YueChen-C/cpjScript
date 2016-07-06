@@ -8,7 +8,7 @@ import cookielib
 import os
 from random import choice
 import time
-from lib.httplog import httplog
+from lib.httplog import log
 
 
 
@@ -45,6 +45,10 @@ class _http(object):
         content = urllib2.urlopen(req, timeout=5)
         return content
 
+    def get_code(self,req_url):
+        statusCode =self.get_req(req_url).getcode()
+        return statusCode
+
     def put_req(self,req_url):
         req = urllib2.Request(url=req_url,data=self.data,headers=self.header)
         req.get_method = lambda:'PUT'
@@ -64,11 +68,12 @@ class _http(object):
         return text
 
 
+
     def downImage(self,imageUrl,path):
         '''
         :param imageUrl: 文件，图片，mp4等
         :param path: 存储地址
-        :return:
+        :return: imageName
         '''
         try:
             isExisist = os.path.exists(path)
@@ -80,8 +85,8 @@ class _http(object):
             urllib.urlretrieve(imageUrl,local)
             return imageName
         except Exception as e :
-            httplog.log.warning(u'文件下载失败'+imageUrl)
-            httplog.log.warning(e)
+            log('http').log.warning(u'文件下载失败'+imageUrl)
+            log('http').log.warning(e)
 
 
     def get_data(self,req_url,num=None,type=None):
@@ -92,6 +97,7 @@ class _http(object):
         '''
         try:
             content=self.get_req(req_url).read()
+            statusCode =self.get_req(req_url).getcode()
             if isinstance(content, unicode):
                 pass
             else:
@@ -109,6 +115,6 @@ class _http(object):
                 time.sleep(2)
                 return self.get_data(req_url=req_url,num=num-1)
             else:
-                httplog.log.warning(u'与服务器连接异常错误链接'+req_url)
-                httplog.log.warning(e)
+                log('http').log.warning(u'与服务器连接异常错误链接'+req_url)
+                log('http').log.warning(e)
 
