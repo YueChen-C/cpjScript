@@ -1,12 +1,10 @@
 #coding=utf8
-import os
-import openpyxl
-from lib.http import _http
-from lib.Threadhtml import Threadstart
-import unittest,time,HTMLTestRunner
 import json
+import os
 
-
+import openpyxl
+from lib.Threadhtml import Threadstart
+from lib.http import _http
 
 
 def list_split(num,tied):
@@ -20,6 +18,22 @@ def list_split(num,tied):
             p=[i,num]
         list.append(p)
     return list
+
+def list_all_dict(dict_a):
+        '''
+        :param dict_a: 遍历所有字段
+        :return:
+        '''
+        keys=[]
+        def list_dict(dict_a):
+            if isinstance(dict_a,dict):
+                for x in range(len(dict_a)):
+                    key= dict_a.keys()[x]
+                    value = dict_a[key]
+                    list_dict(value)
+                    keys.append(key)
+                return keys
+        return list_dict(dict_a)
 
 
 class read_xsls():
@@ -45,32 +59,13 @@ class read_xsls():
         work_data=http.get_data(req_url=url,num=3,type=2)
         return work_data
 
-    def list_all_dict(self,dict_a):
-        '''
-        :param dict_a: 遍历所有字段
-        :return:
-        '''
-        keys=[]
-        def list_dict(dict_a):
-            if isinstance(dict_a,dict):
-                for x in range(len(dict_a)):
-                    key= dict_a.keys()[x]
-                    value = dict_a[key]
-                    list_dict(value)
-                    keys.append(key)
-                return keys
-        return list_dict(dict_a)
-
-
-
-
-
 
 class work(read_xsls):
 
 
     def main(self,list):
         for row in range(list[0],list[1]):
+            Remarks=[]
             try:
                 arr={}
                 arr['Name']=self.work_name.cell(row = row,column = 2).value
@@ -89,9 +84,9 @@ class work(read_xsls):
                 content=self.get_data(arr['Token'],url,data)
 
                 #验证所有字段是否默认规格匹配
-                Getfield=self.list_all_dict(content)
+                Getfield=list_all_dict(content)
                 p=json.loads(arr['Example'])
-                xslsfield=self.list_all_dict(p)
+                xslsfield=list_all_dict(p)
                 if Getfield==xslsfield:
                     pass
                 else:
@@ -107,13 +102,13 @@ class work(read_xsls):
                 if self.code==arr['Code']:
                     pass
                 else:
-                    Remarks=u'返回状态错误'+str(self.code)
+                    Remarks=u'返回Url状态错误'+str(self.code+arr['Url'])
                     return False
 
                 type="Pass"
             except Exception,error:
-                Remarks=error
-                Remark="%s"% Remarks
+                Remarks.append(error)
+                Remark=str(Remarks)
                 type="Fail"
                 self.work_name.cell(row = row,column = 10).value=Remark
             self.work_name.cell(row = row,column = 9).value=type

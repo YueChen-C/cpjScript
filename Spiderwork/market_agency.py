@@ -1,8 +1,11 @@
 #coding=utf8
-from lib.http import _http
-import re,json
-from lib.Threadhtml import Threadstart
+import json
+import re
+
 from lib import db
+from lib.Threadhtml import Threadstart
+from lib.http import _http
+
 
 class down():
     def htmljson(self,content):
@@ -23,7 +26,7 @@ class down():
             arr.append(content[i]['linkUrl'])
             arr.append(u'会计事务所')
             key=('name','url','type')
-            db.insert_one(table='Market_institutions',keys=key,values=arr,repeat=3)
+            db.insert_one(table='Market_institutions', keys=key, values=arr, repeat=3)
 
     def pagenum(self):
         url='http://www.neeq.com.cn/info/list.do?callback=jQuery18302463568950221321_1467704895415'
@@ -49,7 +52,7 @@ class down():
             arr.append(content[i]['linkUrl'])
             arr.append(u'律师事务所')
             key=('name','url','type')
-            db.insert_one(table='Market_institutions',keys=key,values=arr,repeat=3)
+            db.insert_one(table='Market_institutions', keys=key, values=arr, repeat=3)
 
 
 if __name__ == "__main__":

@@ -1,11 +1,14 @@
 #coding=utf8
 #下载xlsx导入数据库
+import json
+import os
+import re
+
 import openpyxl
-from lib.http import _http
-import os,re,json
 from lib import db
-from lib.httplog import httplog
 from lib.Threadhtml import Threadstart
+from lib.http import _http
+
 
 def list_split(num,tied):
     '''平均分组
@@ -54,7 +57,7 @@ class read_xsls(down):
             for i in range(1,11):
                 manage.append(work_manage.cell(row = rx,column = i).value)
             key=('Nasdaq','shorthand','firstcode','firstname','towcode','towname','threecode','threename','fourcode','fourname')
-            db.insert_one(table='manage_classify',keys=key,values=manage,repeat=3)
+            db.insert_one(table='manage_classify', keys=key, values=manage, repeat=3)
 
     def investment_content(self,list):
         work_investment = self.work_book.get_sheet_by_name(u'投资型')
@@ -63,7 +66,7 @@ class read_xsls(down):
             for i in range(1,11):
                 investment.append(work_investment.cell(row = rx,column = i).value)
             key=('Nasdaq','shorthand','firstcode','firstname','towcode','towname','threecode','threename','fourcode','fourname')
-            db.insert_one(table='company_classify',keys=key,values=investment,repeat=3)
+            db.insert_one(table='company_classify', keys=key, values=investment, repeat=3)
 
 
 

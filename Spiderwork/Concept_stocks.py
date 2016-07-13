@@ -1,9 +1,11 @@
 # -*-coding: utf-8 -*-
-from lib.http import _http
-from lib import db
 import re
+
+from lib import db
 from lib.Threadhtml import Threadstart
+from lib.http import _http
 from lib.httplog import log
+
 
 class Concept():
     def __init__(self):
@@ -49,7 +51,7 @@ class Concept():
                     connet.append(type)
                     text.append(tuple(connet))
                 key=('name','stokcode','region','business','transition_type','industry','type')
-                db.insert_tuple('Concept_stoks',key,text,repeat=1)
+                db.insert_tuple('Concept_stoks', key, text, repeat=1)
         except Exception,e:
             log('http').log.warning(u'与服务器连接异常,链接:'+req_url)
             log('http').log.warning(e)

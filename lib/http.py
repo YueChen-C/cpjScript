@@ -1,4 +1,4 @@
-#coding=utf8
+# -*- coding: utf-8 -*-
 #http数据请求
 import urllib2
 import urllib
@@ -9,6 +9,8 @@ import os
 from random import choice
 import time
 from lib.httplog import log
+from StringIO import StringIO
+import gzip
 
 
 
@@ -25,7 +27,8 @@ class _http(object):
         self.data=data
         self.proxy=proxy
         if header is None:
-            self.header= {'User-Agent':'"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:26.0) Gecko/20100101 Firefox/26.0"'}
+            self.header= {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0',
+                          'Accept-Language': 'zh-CN,zh;q=0.8'}
         else:
             self.header=header
         #获取cookie
@@ -96,8 +99,15 @@ class _http(object):
         :param type: 解析类型1=xpath，2=json
         '''
         try:
-            content=self.get_req(req_url).read()
-            statusCode =self.get_req(req_url).getcode()
+            get_req=self.get_req(req_url)
+            if get_req.info().get('Content-Encoding') == 'gzip':
+                buf = StringIO(get_req.read())
+                f = gzip.GzipFile(fileobj=buf)
+                content = f.read()
+            else:
+                content=self.get_req(req_url).read()
+                # statusCode =self.get_req(req_url).getcode()
+
             if isinstance(content, unicode):
                 pass
             else:

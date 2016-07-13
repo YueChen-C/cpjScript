@@ -1,9 +1,10 @@
 #coding=utf8
-from lib.http import _http
-from lib.Threadhtml import Threadstart
-import os
 import json
+import os
+
+from lib.Threadhtml import Threadstart
 from lib.cfg import cfg
+from lib.http import _http
 from lib.httplog import log
 
 
@@ -85,20 +86,20 @@ if __name__ == "__main__":
     Mangaer=Mangaerurl()
     num=Mangaer.fand_num()
     path=os.getcwd()+"\config.cfg"
-    key=cfg(file=path,name='manager',key='page')
+    key=cfg(file=path,name='manager',)
     page=None
     #判断全量还是增量
-    if key.query()=='0':
+    if key.query('page')=='0':
         try:
             for page in range(1,num+1):
                 urls= Mangaer.fand_url(page)
                 Threadstart(method=Mangerdata,arrs=urls,num=10)
         finally:
-            key.write(page)
+            key.write('page',page)
     else:
         try:
-            for page in range(int(key.query()),num+1):
+            for page in range(int(key.query('page')),num+1):
                 urls= Mangaer.fand_url(page)
                 Threadstart(method=Mangerdata,arrs=urls,num=10)
         finally:
-            key.write(page)
+            key.write('page',page)

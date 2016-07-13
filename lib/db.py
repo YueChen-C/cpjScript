@@ -2,6 +2,7 @@
 # 数据库操作
 import MySQLdb
 from lib.httplog import log
+from lib.config_db import db
 from config_db import db
 
 
@@ -24,7 +25,7 @@ class create_mysql(object):
 
     def __init__(self):
         self.connection = None
-        self.conn = MySQLdb.connect(host='localhost', user='', passwd='', db='test', charset='utf8')
+        self.conn = MySQLdb.connect(host=db['host'], user=db['user'], passwd=db['passwd'], db=db['db'], charset=db['charset'])
 
     def cursors(self):
         if self.connection is None:
@@ -45,16 +46,18 @@ class create_mysql(object):
 
 
 class _Connection():
-    def _update(self, sql):
+    def _update(self, sql,values):
         create = create_mysql()
         cursors = None
         try:
             cursors = create.cursors()
-            cursors.execute(sql)
+            cursors.execute(sql,values)
             r = cursors.rowcount
             create.commit()
             return r
-        except:
+        except Exception,e:
+            print
+            log('db').log.fatal(e)
             log('db').log.fatal(sql+'执行失败')
             create.rollback()
         finally:
@@ -69,8 +72,9 @@ class _Connection():
             r = cursors.rowcount
             create.commit()
             return r
-        except:
+        except Exception,e:
             log('db').log.fatal(sql+'执行失败')
+            log('db').log.fatal(e)
             create.rollback()
         finally:
             cursors.close()
@@ -83,8 +87,9 @@ class _Connection():
             cursors.execute(sql)
             r = cursors.rowcount
             return r
-        except:
+        except Exception,e:
             log('db').log.fatal(sql+'执行失败')
+            log('db').log.fatal(e)
         finally:
             cursors.close()
 
@@ -97,8 +102,9 @@ class _Connection():
             if cursore.description:
                 names1 = [x[0] for x in cursore.description]
             return [Dict(names1, x) for x in cursore.fetchall()]
-        except:
+        except Exception,e:
             log('db').log.fatal(sql+'执行失败')
+            log('db').log.fatal(e)
         finally:
             cursore.close()
 
@@ -118,18 +124,18 @@ def insert_dict(table, repeat=None, **kw):
     cols, args = zip(*kw.iteritems())
     if repeat == 1:
         sql = "insert IGNORE into `%s` (%s) values (%s)" % (
-        table, ','.join(['`%s`' % i for i in cols]), ','.join(["'%s'" % k for k in args]))
+        table, ','.join(['`%s`' % i for i in cols]), ','.join(['%s' for i in range(len(args))]))
     elif repeat == 2:
         sql = "REPLACE into `%s` (%s) values (%s)" % (
-        table, ','.join(['`%s`' % i for i in cols]), ','.join(["'%s'" % k for k in args]))
+        table, ','.join(['`%s`' % i for i in cols]), ','.join(['%s' for i in range(len(args))]))
     elif repeat == 3:
         sql = "insert into `%s` (%s) values (%s) on duplicate key update %s " % (
-        table, ','.join(['`%s`' % i for i in cols]), ','.join(["'%s'" % k for k in args]),
+        table, ','.join(['`%s`' % i for i in cols]), ','.join(['%s' for i in range(len(args))]),
         ','.join(["%s" % i + '=values(' + i + ')' for i in cols]))
     else:
         sql = "insert into `%s` (%s) values (%s)" % (
-        table, ','.join(['`%s`' % i for i in cols]), ','.join(["'%s'" % k for k in args]))
-    return _Connection()._update(sql)
+        table, ','.join(['`%s`' % i for i in cols]), ','.join(['%s' for i in range(len(args))]))
+    return _Connection()._update(sql,args)
 
 
 def insert_tuple(table, keys, values, repeat=None):
@@ -171,16 +177,16 @@ def insert_one(table, keys, values, repeat=None):
     '''
     if repeat == 1:
         sql = "INSERT IGNORE INTO `%s` (%s) VALUES (%s)" % (
-        table, (','.join(keys)), (','.join(["'%s'" % i for i in values])))
+        table, (','.join(keys)), ','.join(['%s' for i in range(len(keys))]))
     elif repeat == 2:
-        sql = "REPLACE INTO `%s` (%s) VALUES (%s)" % (table, (','.join(keys)), (','.join(["'%s'" % i for i in values])))
+        sql = "REPLACE INTO `%s` (%s) VALUES (%s)" % (table, (','.join(keys)), ','.join(['%s' for i in range(len(keys))]))
     elif repeat == 3:
         sql = "INSERT INTO `%s` (%s) VALUES (%s) on duplicate key update %s" % (
-        table, (','.join(keys)), (','.join(["'%s'" % i for i in values])),
+        table, (','.join(keys)), (','.join(['%s' for i in range(len(keys))])),
         ','.join(["%s" % i + '=values(' + i + ')' for i in keys]))
     else:
-        sql = "INSERT INTO `%s` (%s) VALUES (%s)" % (table, (','.join(keys)), (','.join(["'%s'" % i for i in values])))
-    return _Connection()._update(sql)
+        sql = "INSERT INTO `%s` (%s) VALUES (%s)" % (table, (','.join(keys)), ','.join(['%s' for i in range(len(keys))]))
+    return _Connection()._update(sql,values)
 
 
 def update(table, content,key):

@@ -7,7 +7,7 @@ import ConfigParser
 cf = ConfigParser.ConfigParser()
 #配置文件读写
 class cfg():
-    def __init__(self,file,name,key):
+    def __init__(self,file,name,):
         '''
         :param file: 文件地址
         :param type: 分类名
@@ -15,21 +15,21 @@ class cfg():
         '''
         self.file=file
         self.type=name
-        self.key=key
 
-    def query(self):
+
+    def query(self,key):
         cf.read(self.file)
-        content=cf.get(self.type,self.key)
+        content=cf.get(self.type,key)
         return content
 
-    def write(self,content):
+    def write(self,key,content):
         '''
         :param content: 写入内容
         :return:
         '''
-        cf.set(self.type,self.key,content)
+        cf.set(self.type,key,content)
         cf.write(open(self.file,"w"))
         cf.read(self.file)
-        text=cf.get(self.type,self.key)
+        text=cf.get(self.type,key)
         assert text==str(content)#检查是否写入成功
 

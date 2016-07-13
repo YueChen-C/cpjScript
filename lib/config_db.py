@@ -7,6 +7,7 @@ db = {
     'user': '',
     'passwd': '',
     'db': 'test',
-    'charset':'utf_8'
+    'charset':'utf8'
 }
+
 
