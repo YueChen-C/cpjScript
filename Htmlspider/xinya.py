@@ -1,10 +1,10 @@
 # -*-coding: utf-8 -*-
 #新芽网
 from BeautifulSoup import BeautifulSoup
-from lib import db
-from lib.http import _http
-from lib.httplog import log
-
+from Clib import db
+from Clib.http import _http
+from Clib.httplog import log
+from Clib.config_db import news
 
 Classify={
     'VC':['http://newseed.pedaily.cn/news/c4210-p',u'引力波'],
@@ -17,52 +17,7 @@ Classify={
 
 
 
-def newseed_text(list,olddata=''):
-    '''
-    :param list[req_url,req_url,category]
-    '''
 
-    req_url = list[0]
-    img_url = list[1]
-    category = list[2]
-    try:
-        arr = {}
-        # 获取正文信息
-        http = _http()
-        htmlSource = http.get_data(req_url=req_url, num=5)
-        soup = BeautifulSoup(htmlSource)
-        try:
-            arr['website'] = u"新芽"
-            arr['title'] = soup.find('div', {"class": "col-md-660"}).h1.getText()
-            arr['introduction'] = soup.find('div', {"class": "subject"}).getText()
-            text = []
-            p=soup.find('div', {"class": "pull-left"})
-            for i in p.findAll('a'):
-                text.append(i.getText())
-            arr['keyword'] = ','.join(text)
-
-            # 时间，来源，作者
-            content = soup.find('div', {"class": "info"}).findAll('div')[2].contents
-            content = content[2].split(u" ")
-            arr['author'] = ''
-            arr['source'] = ''
-            try:arr['author'] = content[2]
-            except:pass
-            try:arr['source'] = content[1]
-            except:pass
-
-            arr['source_url'] = req_url
-            arr['copyright_statement'] = ""
-            arr['news_pic'] = img_url
-            arr['content'] = u"%s" % soup.find('div', {"class": "news-content"})
-            arr['release_time'] = soup.find('span', {"class": "date"}).getText()
-            arr['category'] = category
-        except Exception,E:
-            log('http').log.warning(req_url)
-            log('http').log.warning(E)
-        db.insert_dict(table='preview_news', repeat=None, **arr)
-    except Exception,E:
-        log('http').log.warning(E)
 
 
 def sorts_list(url,sorts,olddata=''):
@@ -73,7 +28,7 @@ def sorts_list(url,sorts,olddata=''):
     :return:
     '''
     urlhttp = _http()
-    htmlSource = urlhttp.get_data(req_url=url, num=5)
+    htmlSource = urlhttp.get_data(req_url=url, num=2)
     soup = BeautifulSoup(htmlSource)
     list = []
     title=''
@@ -92,11 +47,10 @@ def sorts_list(url,sorts,olddata=''):
             data.append(dateinfo)
 
             #增量添加，查询匹配时返回
-            if dateinfo and title and olddata:
+            if olddata:
                 print title,olddata[0]['title'],olddata[0]['release_time'],dateinfo
                 if dateinfo < str(olddata[0]['release_time']) or olddata[0]['title'] == title:
                     list.pop(-1)
-                    print 11111
                     return list, False
         return list, True
     except Exception,E:
@@ -112,8 +66,58 @@ class mian():
         self.sorts=['VC','FT','QS','CY','RZ','DJS']#分类
         self.url_tell='newseed.pedaily.cn'#验证域名
         self.olddate='2016-01-01 00:00'
-        self.table='preview_news_online'
-        self.website=u'新芽网'
+        self.table=news['table']
+        self.website=u'新芽'
+
+    def newseed_text(self,list,olddata=''):
+        '''
+        :param list[req_url,req_url,category]
+        '''
+
+        req_url = list[0]
+        img_url = list[1]
+        category = list[2]
+        try:
+            arr = {}
+            # 获取正文信息
+            http = _http()
+            htmlSource = http.get_data(req_url=req_url, num=2)
+            soup = BeautifulSoup(htmlSource)
+            try:
+                arr['website'] = u"新芽"
+                arr['title'] = soup.find('div', {"class": "col-md-660"}).h1.getText()
+                arr['introduction'] = soup.find('div', {"class": "subject"}).getText()
+                text = []
+                p=soup.find('div', {"class": "pull-left"})
+                for i in p.findAll('a'):
+                    text.append(i.getText())
+                arr['keyword'] = ','.join(text)
+
+                # 时间，来源，作者
+                content = soup.find('div', {"class": "info"}).findAll('div')[2].contents
+                content = content[2].split(u" ")
+                arr['author'] = ''
+                arr['source'] = ''
+                try:arr['author'] = content[2]
+                except:pass
+                try:arr['source'] = content[1]
+                except:pass
+
+                arr['source_url'] = req_url
+                arr['copyright_statement'] = ""
+                arr['news_pic'] = img_url
+                arr['content'] = u"%s" % soup.find('div', {"class": "news-content"})
+                arr['release_time'] = soup.find('span', {"class": "date"}).getText()
+                arr['category'] = category
+                print arr['title']
+            except Exception,E:
+                log('http').log.warning(req_url)
+                log('http').log.warning(E)
+                #去重字段
+            key={'title':arr['title'],'category':arr['category']}
+            db.insert_dict(table=self.table, repeat=4,key=key,**arr)
+        except Exception,E:
+            log('http').log.warning(E)
 
     def olddata(self,category):
         '''
@@ -129,24 +133,21 @@ class mian():
         try:
             req_url=url+str(page)
             urls, type = sorts_list(req_url,sorts,olddata)
-            print urls
-
             if olddata:
                 for list in urls:
                     urlArr = list[0].split(u"/")
                     if urlArr[2] == self.url_tell:
-                        newseed_text(list)
+                        self.newseed_text(list)
             else:
                 for list in urls:
                     if list[3] > self.olddate:
                         urlArr = list[0].split(u"/")
                         if urlArr[2] == self.url_tell:
-                            newseed_text(list)
+                            self.newseed_text(list)
                     else:
                         return False
             if type == False:
                 return False
-
         except Exception,E:
             log('http').log.warning(E)
 
@@ -160,7 +161,6 @@ if __name__ == "__main__":
         url=Classify[sort][0]
         category=Classify[sort][1]
         sqldata=xinya.olddata(category)
-
         for page in range(1,10):
             if xinya.work(page,url,category,sqldata)==False:
                 break

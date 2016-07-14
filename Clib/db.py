@@ -1,9 +1,9 @@
 # coding=utf8
 # 数据库操作
 import MySQLdb
-from lib.httplog import log
-from lib.config_db import db
-from config_db import db
+from Clib.httplog import log
+from Clib.config_db import db
+
 
 
 class Dict(dict):
@@ -112,7 +112,7 @@ def insert(sql):
     return _Connection()._update(sql)
 
 
-def insert_dict(table, repeat=None, **kw):
+def insert_dict(table, repeat=None,key=None, **kw):
     '''
     sql插入字典数据
     :param table: 表名称
@@ -120,6 +120,7 @@ def insert_dict(table, repeat=None, **kw):
     :param repeat: repeat=1数据去重时必须有唯一键
                    repeat=2重复时覆盖以前数据
                    repeat=3重复时更新数据
+                   repeat=4多条件去重
     '''
     cols, args = zip(*kw.iteritems())
     if repeat == 1:
@@ -132,13 +133,19 @@ def insert_dict(table, repeat=None, **kw):
         sql = "insert into `%s` (%s) values (%s) on duplicate key update %s " % (
         table, ','.join(['`%s`' % i for i in cols]), ','.join(['%s' for i in range(len(args))]),
         ','.join(["%s" % i + '=values(' + i + ')' for i in cols]))
+    elif repeat==4:
+        if select(key,table):
+            return
+        else:
+            sql = "insert into `%s` (%s) values (%s)" % (
+        table, ','.join(['`%s`' % i for i in cols]), ','.join(['%s' for i in range(len(args))]))
     else:
         sql = "insert into `%s` (%s) values (%s)" % (
         table, ','.join(['`%s`' % i for i in cols]), ','.join(['%s' for i in range(len(args))]))
     return _Connection()._update(sql,args)
 
 
-def insert_tuple(table, keys, values, repeat=None):
+def insert_tuple(table, keys, values, key=None,repeat=None):
     '''
     sql批量插入元组数据
     :param table: 表名称
@@ -147,6 +154,7 @@ def insert_tuple(table, keys, values, repeat=None):
     :param repeat: repeat=1数据去重时必须有唯一键
                    repeat=2重复时覆盖以前数据
                    repeat=3重复时更新数据
+                   repeat=4多条件去重
     '''
     if repeat == 1:
         sql = "INSERT IGNORE INTO `%s` (%s) VALUES (%s)" % (
@@ -158,10 +166,15 @@ def insert_tuple(table, keys, values, repeat=None):
         sql = "INSERT INTO `%s` (%s) VALUES (%s) on duplicate key update %s " % (
         table, (','.join(keys)), (','.join(['%s' for i in range(len(keys))])),
         ','.join(["%s" % i + '=values(' + i + ')' for i in keys]))
+    elif repeat==4:
+        if select(key,table):
+            return
+        else:
+            sql = "INSERT INTO `%s` (%s) VALUES (%s)" % (
+        table, (','.join(keys)), (','.join(['%s' for i in range(len(keys))])))
     else:
         sql = "INSERT INTO `%s` (%s) VALUES (%s)" % (
         table, (','.join(keys)), (','.join(['%s' for i in range(len(keys))])))
-    print sql,values
     return _Connection()._update_many(sql, values)
 
 
@@ -214,8 +227,17 @@ def create_table(table, keys):
     return _Connection()._table(sql)
 
 
-def select(sql):
+def select(content,table=''):
     # sql查询并生成字典
+    if isinstance(content,dict):
+        text=[]
+        for k,v in content.iteritems():
+            text.append(('`%s`'%k+'=''\'%s\''%v))
+        text=' AND '.join(text)
+
+        sql="SELECT * FROM `%s` WHERE %s"%(table,text)
+    else:
+        sql=content
     return _Connection()._select(sql)
 
 
@@ -246,4 +268,8 @@ def empty_table(table):
     '''
     sql = "TRUNCATE TABLE %s"%table
     return _Connection()._table(sql)
+
+
+
+
 

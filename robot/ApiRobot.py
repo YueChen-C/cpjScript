@@ -3,8 +3,8 @@ import json
 import os
 
 import openpyxl
-from lib.Threadhtml import Threadstart
-from lib.http import _http
+from Clib.Threadhtml import Threadstart
+from Clib.http import _http
 
 
 def list_split(num,tied):

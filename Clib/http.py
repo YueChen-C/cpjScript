@@ -8,7 +8,7 @@ import cookielib
 import os
 from random import choice
 import time
-from lib.httplog import log
+from Clib.httplog import log
 from StringIO import StringIO
 import gzip
 
@@ -106,8 +106,6 @@ class _http(object):
                 content = f.read()
             else:
                 content=self.get_req(req_url).read()
-                # statusCode =self.get_req(req_url).getcode()
-
             if isinstance(content, unicode):
                 pass
             else:

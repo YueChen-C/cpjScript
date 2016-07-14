@@ -2,10 +2,10 @@
 import json
 import os
 
-from lib.Threadhtml import Threadstart
-from lib.cfg import cfg
-from lib.http import _http
-from lib.httplog import log
+from Clib.Threadhtml import Threadstart
+from Clib.cfg import cfg
+from Clib.http import _http
+from Clib.httplog import log
 
 
 class Mangaerurl(object):

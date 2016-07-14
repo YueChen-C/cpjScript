@@ -1,13 +1,14 @@
 # -*-coding: utf-8 -*-
 #财经网金融
 from BeautifulSoup import BeautifulSoup
-from lib import db
-from lib.http import _http
-from lib.httplog import log
-from lib.Threadhtml import Threadstart
-
+from Clib import db
+from Clib.http import _http
+from Clib.Threadhtml import Threadstart
+from Clib.config_db import news
 
 class work():
+    def __init__(self):
+        self.table=news['table']
 
     def data(self,url):
         header= {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20101101 Firefox/47.0',
@@ -46,7 +47,9 @@ class work():
                         arr['release_time']=article.find('span',{"id": "pubtime_baidu"}).getText()
                         arr['category']=u'金融'
                         print arr['title']
-                        db.insert_dict(table='preview_news_online', repeat=None, **arr)
+                        #去重字段
+                        key={'title':arr['title'],'category':arr['category']}
+                        db.insert_dict(table=self.table, repeat=4,key=key,**arr)
                     except Exception,e:
                         print e,req_url
             else:

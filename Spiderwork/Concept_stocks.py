@@ -1,10 +1,10 @@
 # -*-coding: utf-8 -*-
 import re
 
-from lib import db
-from lib.Threadhtml import Threadstart
-from lib.http import _http
-from lib.httplog import log
+from Clib import db
+from Clib.Threadhtml import Threadstart
+from Clib.http import _http
+from Clib.httplog import log
 
 
 class Concept():

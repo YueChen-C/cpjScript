@@ -5,9 +5,9 @@ import os
 import re
 
 import openpyxl
-from lib import db
-from lib.Threadhtml import Threadstart
-from lib.http import _http
+from Clib import db
+from Clib.Threadhtml import Threadstart
+from Clib.http import _http
 
 
 def list_split(num,tied):

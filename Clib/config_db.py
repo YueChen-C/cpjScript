@@ -9,5 +9,5 @@ db = {
     'db': 'test',
     'charset':'utf8'
 }
-
-
+#咨询
+news ={'table':'preview_news_online'}

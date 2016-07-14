@@ -1,15 +1,20 @@
 # -*-coding: utf-8 -*-
 #财经网
 from BeautifulSoup import BeautifulSoup
-from lib import db
-from lib.http import _http
-from lib.httplog import log
-from lib.Threadhtml import Threadstart
+from Clib import db
+from Clib.http import _http
+from Clib.httplog import log
+from Clib.Threadhtml import Threadstart
+from Clib.config_db import news
 
 Classify={
     'ZQYW':['http://stock.caijing.com.cn/stocknews/',u'要闻'],
     'XGPL':['http://stock.caijing.com.cn/xgpl/',u'新股评论'],
-    'HGZC':['http://stock.caijing.com.cn/stockeconomy/',u'宏观政策'],
+    'HGZC':['http://stock.caijing.com.cn/stockeconomy/',u'宏观政策']
+
+}
+
+index={
     'ZQTT':['http://stock.caijing.com.cn/index.html',u'证券头条'],
     'XGTT':['http://stock.caijing.com.cn/newstock/',u'新股头条']
 }
@@ -19,7 +24,7 @@ class work():
     def __init__(self):
         self.time=u'2016年01月01日'
         self.website=u'财经网'
-        self.table='preview_news_online'
+        self.table=news['table']
 
     def olddata(self,category):
         '''
@@ -38,7 +43,7 @@ class work():
                  'Host':'stock.caijing.com.cn',
                  'Cookie':'afpCT=1; Hm_lvt_b0bfb2d8ed2ed295c7354d304ad369f1=1468311363; Hm_lpvt_b0bfb2d8ed2ed295c7354d304ad369f1=1468312121; Hm_lvt_3694d7ec09e48181debb3e5b975f1721=1468311364; Hm_lpvt_3694d7ec09e48181debb3e5b975f1721=1468312121; _ga=GA1.3.1640827747.1468311364; _gat=1'}
         http = _http(header=header)
-        htmlSource = http.get_data(req_url=url, num=1)
+        htmlSource = http.get_data(req_url=url, num=2)
         soup = BeautifulSoup(htmlSource)
         return soup
 
@@ -68,7 +73,9 @@ class work():
                 arr['release_time']=article.find('span',{"id": "pubtime_baidu"}).getText()
                 arr['category']=self.category
                 print arr['title']
-                db.insert_dict(table='xinya_news', repeat=None, **arr)
+                #去重字段
+                key={'title':arr['title'],'category':arr['category']}
+                db.insert_dict(table=self.table, repeat=4,key=key,**arr)
             except Exception,e:
                 print e,req_url
         except Exception,q:
@@ -78,13 +85,10 @@ class work():
     def index(self,url,category):
         self.category=category
         soup=self.data(url)
-        try:
-            head=soup.find('div',{"class": "yaow_cont"}).findAll('a')
-            for i in head:
-                url=i.get('href')
-                self.CJtext(url)
-        except Exception,E:
-            print E,url
+        head=soup.find('div',{"class": "yaow_cont"}).findAll('a')
+        for i in head:
+            url=i.get('href')
+            self.CJtext(url)
 
 
     def list(self,sorts,page,olddata=''):
@@ -111,35 +115,15 @@ class work():
 
 
 
-
-            # self.CJtext(url,category)
-
-
-
-
-
 if __name__ == "__main__":
     work=work()
-    #新股头条
-    work.index(Classify['XGTT'][0],Classify['XGTT'][1])
+    # #新股头条
+    work.index(index['XGTT'][0],index['XGTT'][1])
     # #证券头条
-    work.index(Classify['ZQTT'][0],Classify['ZQTT'][1])
-    #要闻
+    work.index(index['ZQTT'][0],index['ZQTT'][1])
 
-    YWdata=work.olddata(Classify['ZQYW'][1])
-    for i in range(1,30):
-        if work.list('ZQYW',i,YWdata)==False:
-            break
-    #新股评论
-    XGdata=work.olddata(Classify['XGPL'][1])
-    for i in range(1,30):
-        if work.list('XGPL',i,XGdata)==False:
-            break
-    #政策
-    HGdata=work.olddata(Classify['HGZC'][1])
-    for i in range(1,30):
-        if work.list('HGZC',i,HGdata)==False:
-            break
-
-
-
+    for sorts in Classify:
+        olddata=work.olddata(Classify[sorts][1])
+        for i in range(1,30):
+            if work.list(sorts,i,olddata)==False:
+                break
