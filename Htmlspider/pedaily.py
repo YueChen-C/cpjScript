@@ -90,7 +90,6 @@ class work():
         url=Classify[sorts][0]%page
         print url
         self.category=Classify[sorts][1]
-        print self.category
         urlhttp = _http()
         htmlSource = urlhttp.get_data(req_url=url, num=2)
         soup = BeautifulSoup(htmlSource)
@@ -113,6 +112,7 @@ class work():
                     if time < str(olddata[0]['release_time']) or olddata[0]['title'] == title:
                         Threadstart(self.pedaily_text,list,3)
                         return False
+            Threadstart(self.pedaily_text,list,5)
         except Exception,E:
             log('http').log.warning(url)
             log('http').log.warning(E)
@@ -123,6 +123,6 @@ if __name__ == "__main__":
     work=work()
     for sorts in Classify:
         olddata=work.olddata(Classify[sorts][1])
-        for page in range(1,200):
+        for page in range(1,30):
             if work.list(page,sorts,olddata)==False:
                 break

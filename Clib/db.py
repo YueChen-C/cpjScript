@@ -46,19 +46,20 @@ class create_mysql(object):
 
 
 class _Connection():
-    def _update(self, sql,values):
+    def _update(self, sql,*args):
         create = create_mysql()
         cursors = None
         try:
             cursors = create.cursors()
-            cursors.execute(sql,values)
+            cursors.execute(sql,*args)
             r = cursors.rowcount
             create.commit()
             return r
         except Exception,e:
             print
             log('db').log.fatal(e)
-            log('db').log.fatal(sql+'执行失败')
+            log('db').log.fatal(sql+u'执行失败')
+            log('db').log.fatal(args)
             create.rollback()
         finally:
             cursors.close()
@@ -73,7 +74,7 @@ class _Connection():
             create.commit()
             return r
         except Exception,e:
-            log('db').log.fatal(sql+'执行失败')
+            log('db').log.fatal(sql+u'执行失败')
             log('db').log.fatal(e)
             create.rollback()
         finally:
@@ -88,12 +89,12 @@ class _Connection():
             r = cursors.rowcount
             return r
         except Exception,e:
-            log('db').log.fatal(sql+'执行失败')
+            log('db').log.fatal(sql+u'执行失败')
             log('db').log.fatal(e)
         finally:
             cursors.close()
 
-    def _select(self, sql):
+    def _select(self, sql, type=''):
         cteate = create_mysql()
         cursore = None
         try:
@@ -101,15 +102,18 @@ class _Connection():
             cursore.execute(sql)
             if cursore.description:
                 names1 = [x[0] for x in cursore.description]
-            return [Dict(names1, x) for x in cursore.fetchall()]
+                if type==1:
+                    return names1
+                else:
+                    return [Dict(names1, x) for x in cursore.fetchall()]
         except Exception,e:
-            log('db').log.fatal(sql+'执行失败')
+            log('db').log.fatal(sql+u'执行失败')
             log('db').log.fatal(e)
         finally:
             cursore.close()
 
-def insert(sql):
-    return _Connection()._update(sql)
+def insert(sql,values):
+    return _Connection()._update(sql,values)
 
 
 def insert_dict(table, repeat=None,key=None, **kw):
@@ -134,7 +138,10 @@ def insert_dict(table, repeat=None,key=None, **kw):
         table, ','.join(['`%s`' % i for i in cols]), ','.join(['%s' for i in range(len(args))]),
         ','.join(["%s" % i + '=values(' + i + ')' for i in cols]))
     elif repeat==4:
-        if select(key,table):
+        connet=select(key,table)
+        if connet:
+            key='`id`='+str(connet[0]['id'])
+            update(table,kw,key)
             return
         else:
             sql = "insert into `%s` (%s) values (%s)" % (
@@ -178,7 +185,7 @@ def insert_tuple(table, keys, values, key=None,repeat=None):
     return _Connection()._update_many(sql, values)
 
 
-def insert_one(table, keys, values, repeat=None):
+def insert_one(table, keys, values,key=None, repeat=None):
     '''
     sql插入单行数据
     :param table: 表名称
@@ -197,6 +204,11 @@ def insert_one(table, keys, values, repeat=None):
         sql = "INSERT INTO `%s` (%s) VALUES (%s) on duplicate key update %s" % (
         table, (','.join(keys)), (','.join(['%s' for i in range(len(keys))])),
         ','.join(["%s" % i + '=values(' + i + ')' for i in keys]))
+    elif repeat==4:
+        if select(key,table):
+            return
+        else:
+            sql = "INSERT INTO `%s` (%s) VALUES (%s)" % (table, (','.join(keys)), ','.join(['%s' for i in range(len(keys))]))
     else:
         sql = "INSERT INTO `%s` (%s) VALUES (%s)" % (table, (','.join(keys)), ','.join(['%s' for i in range(len(keys))]))
     return _Connection()._update(sql,values)
@@ -213,8 +225,8 @@ def update(table, content,key):
     for k,v in content.iteritems():
         text.append(('`%s`'%k+'=''\'%s\''%v))
     text=','.join(text)
-    sql="UPDATE `%s` SET %s WHERE %s;" % (table,text,key)
-    return _Connection()._update(table, sql)
+    sql="UPDATE `%s` SET %s WHERE %s;"%(table,text,key)
+    return _Connection()._update(sql)
 
 
 def create_table(table, keys):
@@ -227,7 +239,13 @@ def create_table(table, keys):
     return _Connection()._table(sql)
 
 
-def select(content,table=''):
+def select(content,table='',type=''):
+    '''
+    :param content: 多条件字典
+    :param table: 表名称
+    :param type: type=1时查询字段名
+    :return:
+    '''
     # sql查询并生成字典
     if isinstance(content,dict):
         text=[]
@@ -238,7 +256,7 @@ def select(content,table=''):
         sql="SELECT * FROM `%s` WHERE %s"%(table,text)
     else:
         sql=content
-    return _Connection()._select(sql)
+    return _Connection()._select(sql,type=type)
 
 
 def delete(table, key, values):
