@@ -5,6 +5,7 @@ from Clib import db
 from Clib.http import _http
 from Clib.Threadhtml import Threadstart
 from Clib.config_db import news
+from Clib.httplog import log
 
 class work():
     def __init__(self):
@@ -24,8 +25,7 @@ class work():
     def CJtext(self,req_url):
         try:
             urlsplit=req_url.split('/')
-            if urlsplit[2]=='finance.caijing.com.cn':
-
+            if urlsplit[2] and urlsplit[2]=='finance.caijing.com.cn':
                     soup=self.data(req_url)
                     try:
                         arr={}
@@ -43,19 +43,19 @@ class work():
                         arr['source']=article.find('span',{"id": "source_baidu"}).getText()
                         arr['source_url']=req_url
                         arr['copyright_statement']=''
-                        arr['content']=article.find('div',{"class": "article-content"})
+                        arr['content']=u"%s" % article.find('div',{"class": "article-content"})
                         arr['release_time']=article.find('span',{"id": "pubtime_baidu"}).getText()
                         arr['category']=u'金融'
                         print arr['title']
                         #去重字段
                         key={'title':arr['title'],'category':arr['category']}
                         db.insert_dict(table=self.table, repeat=4,key=key,**arr)
-                    except Exception,e:
-                        print e,req_url
+                    except Exception:
+                        log('db').log.exception(req_url+u'财经网金融')
             else:
                 return False
-        except Exception,q:
-                print q,req_url
+        except Exception:
+                log('http').log.exception(req_url+u'财经网金融')
 
 
 

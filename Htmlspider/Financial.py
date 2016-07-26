@@ -69,17 +69,17 @@ class work():
                 arr['source']=article.find('span',{"id": "source_baidu"}).getText()
                 arr['source_url']=req_url
                 arr['copyright_statement']=''
-                arr['content']=article.find('div',{"class": "article-content"})
+                arr['content']=u"%s" % article.find('div',{"class": "article-content"})
                 arr['release_time']=article.find('span',{"id": "pubtime_baidu"}).getText()
                 arr['category']=self.category
                 print arr['title']
                 #去重字段
                 key={'title':arr['title'],'category':arr['category']}
                 db.insert_dict(table=self.table, repeat=4,key=key,**arr)
-            except Exception,e:
-                print e,req_url
-        except Exception,q:
-                print q,req_url
+            except Exception:
+                log('http').log.exception(req_url+u'财经网')
+        except Exception:
+                log('http').log.exception(req_url+u'财经网')
 
 
     def index(self,url,category):

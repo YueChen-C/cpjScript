@@ -1,23 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# db = {
-#     'host': 'localhost',
-#     'port': 3306,
-#     'user': '',
-#     'passwd': '',
-#     'db': 'test',
-#     'charset':'utf8'
-# }
-
 db = {
-    'host': 'db.txdev.org',
+    'host': 'localhost',
     'port': 3306,
-    'user': 'dev_www',
-    'passwd': '123456www',
-    'db': 'tx_data',
+    'user': '',
+    'passwd': '',
+    'db': 'test',
     'charset':'utf8'
 }
+
+# db = {
+#     'host': 'db.txdev.org',
+#     'port': 3306,
+#     'user': 'dev_www',
+#     'passwd': '123456www',
+#     'db': 'tx_data',
+#     'charset':'utf8'
+# }
 
 
 

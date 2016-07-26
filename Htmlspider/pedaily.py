@@ -66,12 +66,11 @@ class work():
                 arr['category'] = self.category
                 print arr['title']
             except Exception,E:
-                log('http').log.warning(req_url)
-                log('http').log.warning(E)
+                log('http').log.exception(req_url+u'投资界')
             key={'title':arr['title'],'category':arr['category']}
             db.insert_dict(table=news['table'], repeat=4,key=key, **arr)
         except Exception,E:
-            log('http').log.warning(E)
+            log('http').log.exception(req_url+u'投资界')
 
 
     def olddata(self,category):
@@ -87,11 +86,11 @@ class work():
         :param olddata: 数据库数据，用于增量
         :return:
         '''
-        url=Classify[sorts][0]%page
-        print url
+        req_url=Classify[sorts][0]%page
+        print req_url
         self.category=Classify[sorts][1]
         urlhttp = _http()
-        htmlSource = urlhttp.get_data(req_url=url, num=2)
+        htmlSource = urlhttp.get_data(req_url=req_url, num=2)
         soup = BeautifulSoup(htmlSource)
         list = []
         title=''
@@ -114,8 +113,7 @@ class work():
                         return False
             Threadstart(self.pedaily_text,list,5)
         except Exception,E:
-            log('http').log.warning(url)
-            log('http').log.warning(E)
+            log('http').log.exception(req_url+u'投资界')
         return True
 
 

@@ -55,11 +55,8 @@ class _Connection():
             r = cursors.rowcount
             create.commit()
             return r
-        except Exception,e:
-            print
-            log('db').log.fatal(e)
-            log('db').log.fatal(sql+u'执行失败')
-            log('db').log.fatal(args)
+        except Exception:
+            log('db').log.exception(sql+u"执行失败")
             create.rollback()
         finally:
             cursors.close()
@@ -73,9 +70,8 @@ class _Connection():
             r = cursors.rowcount
             create.commit()
             return r
-        except Exception,e:
-            log('db').log.fatal(sql+u'执行失败')
-            log('db').log.fatal(e)
+        except Exception:
+            log('db').log.exception(sql+u"执行失败")
             create.rollback()
         finally:
             cursors.close()
@@ -88,9 +84,8 @@ class _Connection():
             cursors.execute(sql)
             r = cursors.rowcount
             return r
-        except Exception,e:
-            log('db').log.fatal(sql+u'执行失败')
-            log('db').log.fatal(e)
+        except Exception:
+            log('db').log.exception(sql+u"执行失败")
         finally:
             cursors.close()
 
@@ -106,15 +101,17 @@ class _Connection():
                     return names1
                 else:
                     return [Dict(names1, x) for x in cursore.fetchall()]
-        except Exception,e:
-            log('db').log.fatal(sql+u'执行失败')
-            log('db').log.fatal(e)
+        except Exception:
+            log('db').log.exception(sql+u"执行失败")
+
         finally:
             cursore.close()
+
 
 def insert(sql,values):
     return _Connection()._update(sql,values)
 
+insert('ceeee',11)
 
 def insert_dict(table, repeat=None,key=None, **kw):
     '''

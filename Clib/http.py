@@ -87,9 +87,8 @@ class _http(object):
             local = os.path.join(path,imageName)
             urllib.urlretrieve(imageUrl,local)
             return imageName
-        except Exception as e :
-            log('http').log.warning(u'文件下载失败'+imageUrl)
-            log('http').log.warning(e)
+        except Exception:
+            log('http').log.exception(u'文件下载失败'+imageUrl)
 
 
     def get_data(self,req_url,num=None,type=None):
@@ -105,7 +104,7 @@ class _http(object):
                 f = gzip.GzipFile(fileobj=buf)
                 content = f.read()
             else:
-                content=self.get_req(req_url).read()
+                content=get_req.read()
             if isinstance(content, unicode):
                 pass
             else:
@@ -118,11 +117,10 @@ class _http(object):
                 htmljson = json.loads(str)
                 return htmljson
             return content
-        except Exception , e:
+        except Exception:
             if num > 0:
                 time.sleep(2)
                 return self.get_data(req_url=req_url,num=num-1)
             else:
-                log('http').log.warning(u'与服务器连接异常错误链接'+req_url)
-                log('http').log.warning(e)
+                log('http').log.exception(u'与服务器连接异常错误链接'+req_url)
 

@@ -66,15 +66,14 @@ class mian():
                 arr['content'] = u"%s" % soup.find('div', {"class": "news-content"})
                 arr['release_time'] = soup.find('span', {"class": "date"}).getText()
                 arr['category'] = self.category
-                print arr['title']
-            except Exception,E:
-                log('http').log.warning(req_url)
-                log('http').log.warning(E)
+                print u'插入：'+arr['title']
+                key={'title':arr['title'],'category':arr['category']}
+                db.insert_dict(table=self.table, repeat=4,key=key,**arr)
+            except Exception:
+                log('http').log.exception(req_url+u'新芽网')
                 #去重字段
-            key={'title':arr['title'],'category':arr['category']}
-            db.insert_dict(table=self.table, repeat=4,key=key,**arr)
-        except Exception,E:
-            log('http').log.warning(E)
+        except Exception:
+            log('http').log.exception(req_url+u'新芽网')
 
 
     def sorts_list(self,page,sorts,olddata=''):
@@ -100,22 +99,21 @@ class mian():
                 data.append(i.find('div', {"class": "img"}).find('a').get("href"))
                 data.append(i.find('div', {"class": "img"}).find('img').get("src"))
                 list.append(data)
-                title = i.find('div', {"class": "img"}).find('a').find('img').get("alt")
+                title = i.find('a', {"class": "title"}).getText()
                 time = i.find('span', {"class": "date"}).getText()
                 if time<self.time:
                     Threadstart(self.newseed_text,list,num=3)
                     return False
                 #增量添加，查询匹配时返回
                 if olddata:
-                    print title,olddata[0]['title'],olddata[0]['release_time'],time
+                    print u'分类:'+self.category,u'新:'+title,u'旧：'+olddata[0]['title'],olddata[0]['release_time'],time
                     if time < str(olddata[0]['release_time']) or olddata[0]['title'] == title:
                         list.pop(-1)
                         Threadstart(self.newseed_text,list,num=3)
                         return False
             Threadstart(self.newseed_text,list,num=3)
-        except Exception,E:
-            log('http').log.warning(url)
-            log('http').log.warning(E)
+        except Exception:
+            log('http').log.exception(url+u'新芽网')
 
     def olddata(self,category):
         '''
