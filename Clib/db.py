@@ -111,7 +111,6 @@ class _Connection():
 def insert(sql,values):
     return _Connection()._update(sql,values)
 
-insert('ceeee',11)
 
 def insert_dict(table, repeat=None,key=None, **kw):
     '''
