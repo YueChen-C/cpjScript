@@ -90,6 +90,11 @@ class _Connection():
             cursors.close()
 
     def _select(self, sql, type=''):
+        '''
+        :param sql:
+        :param type:type=1时，返回字段名
+        :return:
+        '''
         cteate = create_mysql()
         cursore = None
         try:
@@ -235,23 +240,23 @@ def create_table(table, keys):
     return _Connection()._table(sql)
 
 
-def select(content,table='',type=''):
+def select(key,table='',type=''):
     '''
-    :param content: 多条件字典
+    :param content: 多条件字典['id':'1','title':'test']
     :param table: 表名称
     :param type: type=1时查询字段名
     :return:
     '''
     # sql查询并生成字典
-    if isinstance(content,dict):
+    if isinstance(key,dict):
         text=[]
-        for k,v in content.iteritems():
+        for k,v in key.iteritems():
             text.append(('`%s`'%k+'=''\'%s\''%v))
         text=' AND '.join(text)
 
         sql="SELECT * FROM `%s` WHERE %s"%(table,text)
     else:
-        sql=content
+        sql=key
     return _Connection()._select(sql,type=type)
 
 

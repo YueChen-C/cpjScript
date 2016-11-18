@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
 #http数据请求
-import urllib2
-import urllib
+import urllib2,urllib
 import lxml.html as HTML
-import json
+import json,os,gzip
 import cookielib
-import os
 from random import choice
 import time
 from Clib.httplog import log
 from StringIO import StringIO
-import gzip
+
 
 
 

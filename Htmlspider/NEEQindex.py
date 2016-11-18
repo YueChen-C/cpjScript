@@ -7,7 +7,7 @@ def index():
     content=http.get_data(req_url=url,num=3)
     pattern = re.compile(r'\[.*\]', re.DOTALL).findall(content)
     htmljson = json.loads("".join(pattern))
-    data=db.select(content='SELECT * FROM `neeq_index` ',type=1)
+    data=db.select(key='SELECT * FROM `neeq_index` ',type=1)
     text=htmljson
     for i in range(2):
         for k,v in htmljson[i].items():
@@ -16,5 +16,6 @@ def index():
         print htmljson[i]
         db.insert_dict(table='neeq_index',repeat=3,**htmljson[i])
 
-index()
+if __name__ == "__main__":
+    index()
 

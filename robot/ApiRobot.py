@@ -95,7 +95,7 @@ class work(read_xsls):
                             if i not in xslsfield:
                                 field.append(u'缺失字段'+str(i))
                     Remarks=field
-                    return False
+                    raise False
 
 
                 #验证返回状态
@@ -103,7 +103,7 @@ class work(read_xsls):
                     pass
                 else:
                     Remarks=u'返回Url状态错误'+str(self.code+arr['Url'])
-                    return False
+                    raise False
 
                 type="Pass"
             except Exception,error:
