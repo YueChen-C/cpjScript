@@ -34,11 +34,9 @@ class _http(object):
         self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cj),urllib2.HTTPHandler)
         urllib2.install_opener(self.opener)
         #设置代理
-        if self.proxy is None:
-            opener = urllib2.build_opener(urllib2.ProxyHandler({}))
-        else:
+        if self.proxy is not None:
             opener = urllib2.build_opener(urllib2.ProxyHandler({choice(self.proxy)}))
-        urllib2.install_opener(opener)
+            urllib2.install_opener(opener)
 
 
     def get_req(self,req_url):
