@@ -4,8 +4,8 @@ import os
 
 from BeautifulSoup import BeautifulSoup
 from Clib import db
-from Clib.Threadhtml import Threadstart
-from Clib.http import _http
+from Clib.Threadhtml import threadStart
+from Clib.http import _Http
 from Clib.httplog import log
 from Clib.config_db import news
 
@@ -25,7 +25,7 @@ class work():
         self.time='2016-01-01 00:00'
 
 
-    def pedaily_text(self,list):
+    def pedailyText(self, list):
         '''
         :param list[req_url,req_url,category]
         '''
@@ -36,8 +36,8 @@ class work():
         try:
             arr = {}
             # 获取正文信息
-            http = _http()
-            htmlSource = http.get_data(req_url=req_url, num=2)
+            http = _Http()
+            htmlSource = http.getData(req_url=req_url, num=2)
             soup = BeautifulSoup(htmlSource)
             try:
                 arr['website'] = u"投资界"
@@ -68,12 +68,12 @@ class work():
             except Exception,E:
                 log('http').log.exception(req_url+u'投资界')
             key={'title':arr['title'],'category':arr['category']}
-            db.insert_dict(table=news['table'], repeat=4,key=key, **arr)
+            db.insertDict(table=news['table'], repeat=4, key=key)
         except Exception,E:
             log('http').log.exception(req_url+u'投资界')
 
 
-    def olddata(self,category):
+    def oldData(self, category):
         sql="SELECT `title`, `release_time` FROM `%s` WHERE `category` = '%s' and `website`='%s'ORDER BY `release_time` DESC limit 1"%(news['table'],category,self.website)
         return db.select(sql)
 
@@ -89,8 +89,8 @@ class work():
         req_url=Classify[sorts][0]%page
         print req_url
         self.category=Classify[sorts][1]
-        urlhttp = _http()
-        htmlSource = urlhttp.get_data(req_url=req_url, num=2)
+        urlhttp = _Http()
+        htmlSource = urlhttp.getData(req_url=req_url, num=2)
         soup = BeautifulSoup(htmlSource)
         list = []
         title=''
@@ -103,15 +103,15 @@ class work():
                 title = i.find('div', {"class": "img"}).find('a').find('img').get("alt")
                 time = i.find('span', {"class": "date"}).getText()
                 if time<self.time:
-                    Threadstart(self.pedaily_text,list,3)
+                    threadStart(self.pedailyText, list, 3)
                     return False
                 #增量添加，查询匹配时返回
                 if olddata:
                     print title,olddata[0]['title']
                     if time < str(olddata[0]['release_time']) or olddata[0]['title'] == title:
-                        Threadstart(self.pedaily_text,list,3)
+                        threadStart(self.pedailyText, list, 3)
                         return False
-            Threadstart(self.pedaily_text,list,5)
+            threadStart(self.pedailyText, list, 5)
         except Exception,E:
             log('http').log.exception(req_url+u'投资界')
         return True
@@ -120,7 +120,7 @@ class work():
 if __name__ == "__main__":
     work=work()
     for sorts in Classify:
-        olddata=work.olddata(Classify[sorts][1])
+        olddata= work.oldData(Classify[sorts][1])
         for page in range(1,30):
             if work.list(page,sorts,olddata)==False:
                 break

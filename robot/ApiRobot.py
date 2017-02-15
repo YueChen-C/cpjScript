@@ -3,8 +3,8 @@ import json
 import os
 
 import openpyxl
-from Clib.Threadhtml import Threadstart
-from Clib.http import _http
+from Clib.Threadhtml import threadStart
+from Clib.http import _Http
 
 
 def list_split(num,tied):
@@ -54,9 +54,9 @@ class read_xsls():
         header={'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:26.0) Gecko/20100101 Firefox/26.0",
                 'token':"%s"%token,
                 'appversion':"1.8"}
-        http = _http(header=header,data=data)
-        self.code = http.get_code(req_url=url)
-        work_data=http.get_data(req_url=url,num=3,type=2)
+        http = _Http(header=header, data=data)
+        self.code = http.getCode(req_url=url)
+        work_data=http.getData(req_url=url, num=3, type=2)
         return work_data
 
 
@@ -121,5 +121,5 @@ class work(read_xsls):
 if __name__ == "__main__":
     work=work()
     highNum=list_split(work.high_row(),5)
-    Threadstart(work.main,highNum,5)
+    threadStart(work.main, highNum, 5)
 

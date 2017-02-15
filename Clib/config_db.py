@@ -4,9 +4,9 @@
 db = {
     'host': 'localhost',
     'port': 3306,
-    'user': '',
+    'user': 'root',
     'passwd': '',
-    'db': 'test',
+    'db': 'tx_dsd_test',
     'charset':'utf8'
 }
 

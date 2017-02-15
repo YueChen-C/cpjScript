@@ -2,9 +2,9 @@
 #财经网
 from BeautifulSoup import BeautifulSoup
 from Clib import db
-from Clib.http import _http
+from Clib.http import _Http
 from Clib.httplog import log
-from Clib.Threadhtml import Threadstart
+from Clib.Threadhtml import threadStart
 from Clib.config_db import news
 
 Classify={
@@ -20,7 +20,7 @@ index={
 }
 
 
-class work():
+class Work():
     def __init__(self):
         self.time=u'2016年01月01日'
         self.website=u'财经网'
@@ -42,8 +42,8 @@ class work():
                  'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
                  'Host':'stock.caijing.com.cn',
                  'Cookie':'afpCT=1; Hm_lvt_b0bfb2d8ed2ed295c7354d304ad369f1=1468311363; Hm_lpvt_b0bfb2d8ed2ed295c7354d304ad369f1=1468312121; Hm_lvt_3694d7ec09e48181debb3e5b975f1721=1468311364; Hm_lpvt_3694d7ec09e48181debb3e5b975f1721=1468312121; _ga=GA1.3.1640827747.1468311364; _gat=1'}
-        http = _http(header=header)
-        htmlSource = http.get_data(req_url=url, num=2)
+        http = _Http(header=header)
+        htmlSource = http.getData(req_url=url, num=2)
         soup = BeautifulSoup(htmlSource)
         return soup
 
@@ -75,7 +75,7 @@ class work():
                 print arr['title']
                 #去重字段
                 key={'title':arr['title'],'category':arr['category']}
-                db.insert_dict(table=self.table, repeat=4,key=key,**arr)
+                db.insertDict(table=self.table, repeat=4, key=key)
             except Exception:
                 log('http').log.exception(req_url+u'财经网')
         except Exception:
@@ -103,20 +103,20 @@ class work():
             time=i.find('div',{"class": "time"}).getText()
             title=i.find('a').getText()
             if time<self.time:
-                Threadstart(self.CJtext,urlarr,3)
+                threadStart(self.CJtext, urlarr, 3)
                 return False
             #数据库增量判断
             if olddata:
                 print title,olddata[0]['title'],olddata[0]['release_time'],time
                 if time < str(olddata[0]['release_time']) or olddata[0]['title'] == title:
-                    Threadstart(self.CJtext,urlarr,3)
+                    threadStart(self.CJtext, urlarr, 3)
                     return False
-        Threadstart(self.CJtext,urlarr,5)
+        threadStart(self.CJtext, urlarr, 5)
 
 
 
 if __name__ == "__main__":
-    work=work()
+    work=Work()
     # #新股头条
     work.index(index['XGTT'][0],index['XGTT'][1])
     # #证券头条

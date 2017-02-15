@@ -2,20 +2,20 @@
 #财经网金融
 from BeautifulSoup import BeautifulSoup
 from Clib import db
-from Clib.http import _http
-from Clib.Threadhtml import Threadstart
+from Clib.http import _Http
+from Clib.Threadhtml import threadStart
 from Clib.config_db import news
 from Clib.httplog import log
 
-class work():
+class Work():
     def __init__(self):
         self.table=news['table']
 
     def data(self,url):
         header= {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20101101 Firefox/47.0',
                  'Accept-Language': 'zh-CN,zh;q=0.8'}
-        http = _http(header=header)
-        htmlSource = http.get_data(req_url=url, num=3)
+        http = _Http(header=header)
+        htmlSource = http.getData(req_url=url, num=3)
         soup = BeautifulSoup(htmlSource)
         return soup
 
@@ -49,7 +49,7 @@ class work():
                         print arr['title']
                         #去重字段
                         key={'title':arr['title'],'category':arr['category']}
-                        db.insert_dict(table=self.table, repeat=4,key=key,**arr)
+                        db.insertDict(table=self.table, repeat=4, key=key)
                     except Exception:
                         log('db').log.exception(req_url+u'财经网金融')
             else:
@@ -71,8 +71,8 @@ class work():
 
 
 if __name__ == "__main__":
-    work=work()
+    work=Work()
     urlarr=work.index()
-    Threadstart(work.CJtext,urlarr,5)
+    threadStart(work.CJtext, urlarr, 5)
 
 

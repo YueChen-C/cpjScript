@@ -13,7 +13,7 @@ from StringIO import StringIO
 
 
 
-class _http(object):
+class _Http(object):
 
 
     def __init__(self,header=None,data=None,proxy=None):
@@ -39,28 +39,28 @@ class _http(object):
             urllib2.install_opener(opener)
 
 
-    def get_req(self,req_url):
+    def getReq(self, req_url):
         req = urllib2.Request(url=req_url,data=self.data,headers=self.header)
         content = urllib2.urlopen(req, timeout=5)
         return content
 
-    def get_code(self,req_url):
-        statusCode =self.get_req(req_url).getcode()
+    def getCode(self, req_url):
+        statusCode = self.getReq(req_url).getcode()
         return statusCode
 
-    def put_req(self,req_url):
+    def putReq(self, req_url):
         req = urllib2.Request(url=req_url,data=self.data,headers=self.header)
         req.get_method = lambda:'PUT'
         content = urllib2.urlopen(req, timeout=5)
         return content
 
 
-    def get_header(self,req_url,key):
+    def getHeader(self, req_url, key):
         '''
         :param key: 要取的headers（"set-cookie","Content-Type"）
         :return: {'set-cookie': 'PHPSESSID', 'Content-Type': 'text/html; charset=utf-8'}
         '''
-        doc = self.get_req(req_url).info()
+        doc = self.getReq(req_url).info()
         text={}
         for i in key:
             text[i]=doc.getheader(i)
@@ -87,14 +87,14 @@ class _http(object):
             log('http').log.exception(u'文件下载失败'+imageUrl)
 
 
-    def get_data(self,req_url,num=None,type=None):
+    def getData(self, req_url, num=None, type=None):
         '''
         :param req_url: 要获取的url
         :param num: 重试次数
         :param type: 解析类型1=xpath，2=json
         '''
         try:
-            get_req=self.get_req(req_url)
+            get_req= self.getReq(req_url)
             if get_req.info().get('Content-Encoding') == 'gzip':
                 buf = StringIO(get_req.read())
                 f = gzip.GzipFile(fileobj=buf)
@@ -116,7 +116,7 @@ class _http(object):
         except Exception:
             if num > 0:
                 time.sleep(2)
-                return self.get_data(req_url=req_url,num=num-1)
+                return self.getData(req_url=req_url, num=num - 1)
             else:
                 log('http').log.exception(u'与服务器连接异常错误链接'+req_url)
 

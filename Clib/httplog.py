@@ -3,7 +3,7 @@ import logging
 import os,time
 from logging.handlers import TimedRotatingFileHandler
 
-class httplog():
+class HttpLog():
     def __init__(self,name):
         time1=time.strftime('%Y%m%d',time.localtime(time.time()))
         self.file_name = os.getcwd()+"/"+time1+"-"+name+".log"
@@ -17,7 +17,7 @@ class httplog():
 
 
 def log(name):
-    return httplog(name=name)
+    return HttpLog(name=name)
 
 
 

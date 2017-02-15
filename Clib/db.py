@@ -21,7 +21,7 @@ class Dict(dict):
     def __setattr__(self, key, value):
         self[key] = value
 
-class create_mysql(object):
+class CreateMysql(object):
 
     def __init__(self):
         self.connection = None
@@ -45,9 +45,9 @@ class create_mysql(object):
             connection.close()
 
 
-class _Connection():
-    def _update(self, sql,*args):
-        create = create_mysql()
+class Connection():
+    def update(self, sql, *args):
+        create = CreateMysql()
         cursors = None
         try:
             cursors = create.cursors()
@@ -61,8 +61,8 @@ class _Connection():
         finally:
             cursors.close()
 
-    def _update_many(self, sql, values):
-        create = create_mysql()
+    def updateMany(self, sql, values):
+        create = CreateMysql()
         cursors = None
         try:
             cursors = create.cursors()
@@ -76,8 +76,8 @@ class _Connection():
         finally:
             cursors.close()
 
-    def _table(self, sql):
-        create = create_mysql()
+    def table(self, sql):
+        create = CreateMysql()
         cursors = None
         try:
             cursors = create.cursors()
@@ -89,13 +89,13 @@ class _Connection():
         finally:
             cursors.close()
 
-    def _select(self, sql, type=''):
+    def select(self, sql, type=''):
         '''
         :param sql:
         :param type:type=1时，返回字段名
         :return:
         '''
-        cteate = create_mysql()
+        cteate = CreateMysql()
         cursore = None
         try:
             cursore = cteate.cursors()
@@ -114,10 +114,10 @@ class _Connection():
 
 
 def insert(sql,values):
-    return _Connection()._update(sql,values)
+    return Connection().update(sql, values)
 
 
-def insert_dict(table, repeat=None,key=None, **kw):
+def insertDict(table, repeat=None, key=None, **kw):
     '''
     sql插入字典数据
     :param table: 表名称
@@ -150,10 +150,10 @@ def insert_dict(table, repeat=None,key=None, **kw):
     else:
         sql = "insert into `%s` (%s) values (%s)" % (
         table, ','.join(['`%s`' % i for i in cols]), ','.join(['%s' for i in range(len(args))]))
-    return _Connection()._update(sql,args)
+    return Connection().update(sql, args)
 
 
-def insert_tuple(table, keys, values, key=None,repeat=None):
+def insertTuple(table, keys, values, key=None, repeat=None):
     '''
     sql批量插入元组数据
     :param table: 表名称
@@ -183,10 +183,10 @@ def insert_tuple(table, keys, values, key=None,repeat=None):
     else:
         sql = "INSERT INTO `%s` (%s) VALUES (%s)" % (
         table, (','.join(keys)), (','.join(['%s' for i in range(len(keys))])))
-    return _Connection()._update_many(sql, values)
+    return Connection().updateMany(sql, values)
 
 
-def insert_one(table, keys, values,key=None, repeat=None):
+def insertOne(table, keys, values, key=None, repeat=None):
     '''
     sql插入单行数据
     :param table: 表名称
@@ -212,7 +212,7 @@ def insert_one(table, keys, values,key=None, repeat=None):
             sql = "INSERT INTO `%s` (%s) VALUES (%s)" % (table, (','.join(keys)), ','.join(['%s' for i in range(len(keys))]))
     else:
         sql = "INSERT INTO `%s` (%s) VALUES (%s)" % (table, (','.join(keys)), ','.join(['%s' for i in range(len(keys))]))
-    return _Connection()._update(sql,values)
+    return Connection().update(sql, values)
 
 
 def update(table, content,key):
@@ -227,17 +227,17 @@ def update(table, content,key):
         text.append(('`%s`'%k+'=''\'%s\''%v))
     text=','.join(text)
     sql="UPDATE `%s` SET %s WHERE %s;"%(table,text,key)
-    return _Connection()._update(sql)
+    return Connection().update(sql)
 
 
-def create_table(table, keys):
+def createTable(table, keys):
     '''
     sql创建表
     :param table: 表名称
     :param keys: 创建表字段例如('`passwd` nvarchar(50)','`email` nvarchar(50)'）
     '''
     sql = "create table `%s` (%s)" % (table, (','.join(keys)))
-    return _Connection()._table(sql)
+    return Connection().table(sql)
 
 
 def select(key,table='',type=''):
@@ -257,7 +257,7 @@ def select(key,table='',type=''):
         sql="SELECT * FROM `%s` WHERE %s"%(table,text)
     else:
         sql=key
-    return _Connection()._select(sql,type=type)
+    return Connection().select(sql, type=type)
 
 
 def delete(table, key, values):
@@ -268,10 +268,10 @@ def delete(table, key, values):
     :param values: 匹配单个
     '''
     sql = "DELETE FROM `%s` WHERE `%s`=%s" % (table, key, values)
-    return _Connection()._select(sql)
+    return Connection().select(sql)
 
 
-def delete_arr(table, key, values):
+def deleteArr(table, key, values):
     '''
     批量删除
     :param table: 表名称
@@ -279,14 +279,14 @@ def delete_arr(table, key, values):
     :param values: 元组（1,2,3,4）
     '''
     sql = "DELETE FROM `%s` WHERE `%s` IN %s" % (table, key, values)
-    return _Connection()._table(sql)
+    return Connection().table(sql)
 
-def empty_table(table):
+def emptyTable(table):
     '''
     :param table: 清空表
     '''
     sql = "TRUNCATE TABLE %s"%table
-    return _Connection()._table(sql)
+    return Connection().table(sql)
 
 
 

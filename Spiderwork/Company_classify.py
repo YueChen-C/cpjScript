@@ -6,8 +6,8 @@ import re
 
 import openpyxl
 from Clib import db
-from Clib.Threadhtml import Threadstart
-from Clib.http import _http
+from Clib.Threadhtml import threadStart
+from Clib.http import _Http
 
 
 def list_split(num,tied):
@@ -27,8 +27,8 @@ class down():
     def down_urls(self):
         url='http://www.neeq.com.cn/info/list.do?callback=jQuery183012995692230096056_1467603134815'
         data='keywords=&page=0&pageSize=10&nodeId=259'
-        http=_http(data=data)
-        content=http.get_data(req_url=url,num=3)
+        http=_Http(data=data)
+        content=http.getData(req_url=url, num=3)
         pattern = re.compile(r'\[.*\]', re.DOTALL).findall(content)
         htmljson = json.loads("".join(pattern))
         down_url="http://www.neeq.com.cn"+htmljson[0]['data']['content'][0]['fileUrl']
@@ -36,7 +36,7 @@ class down():
     def down_xsls(self):
         path=os.getcwd()
         url=self.down_urls()
-        httpdown=_http()
+        httpdown=_Http()
         return httpdown.downImage(imageUrl=url,path=path)
 
 
@@ -57,7 +57,7 @@ class read_xsls(down):
             for i in range(1,11):
                 manage.append(work_manage.cell(row = rx,column = i).value)
             key=('Nasdaq','shorthand','firstcode','firstname','towcode','towname','threecode','threename','fourcode','fourname')
-            db.insert_one(table='manage_classify', keys=key, values=manage, repeat=3)
+            db.insertOne(table='manage_classify', keys=key, values=manage, repeat=3)
 
     def investment_content(self,list):
         work_investment = self.work_book.get_sheet_by_name(u'投资型')
@@ -66,7 +66,7 @@ class read_xsls(down):
             for i in range(1,11):
                 investment.append(work_investment.cell(row = rx,column = i).value)
             key=('Nasdaq','shorthand','firstcode','firstname','towcode','towname','threecode','threename','fourcode','fourname')
-            db.insert_one(table='company_classify', keys=key, values=investment, repeat=3)
+            db.insertOne(table='company_classify', keys=key, values=investment, repeat=3)
 
 
 
@@ -76,5 +76,5 @@ if __name__ == "__main__":
     #获取总数量平均分组多线程导入
     highNum=read_xsls.high_row(content=u'管理型')
     highNum=list_split(highNum,50)
-    Threadstart(read_xsls.manage_content,highNum,10)
-    Threadstart(read_xsls.investment_content,highNum,10)
+    threadStart(read_xsls.manage_content, highNum, 10)
+    threadStart(read_xsls.investment_content, highNum, 10)

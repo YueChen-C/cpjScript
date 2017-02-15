@@ -15,7 +15,7 @@ class MyThread(threading.Thread):
             self.method(arr)
             self.task.task_done()
 
-def Threadstart(method,arrs,num):
+def threadStart(method, arrs, num):
     '''
     :param method:执行函数
     :param arr: arr数组
@@ -36,7 +36,7 @@ def Threadstart(method,arrs,num):
 
 
 
-def Threadstartone(method,num):
+def ThreadStartone(method, num):
     '''
     :param method:执行函数
     :param num: 线程数量

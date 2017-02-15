@@ -2,8 +2,8 @@
 import re
 
 from Clib import db
-from Clib.Threadhtml import Threadstart
-from Clib.http import _http
+from Clib.Threadhtml import threadStart
+from Clib.http import _Http
 from Clib.httplog import log
 
 
@@ -15,8 +15,8 @@ class Concept():
         text=[]
         transition=[]
         req_url = 'http://www.ipo3.com/strategy-category.html'
-        http=_http()
-        htmlSource=http.get_data(req_url=req_url,num=5,type=1)
+        http=_Http()
+        htmlSource=http.getData(req_url=req_url, num=5, type=1)
         for i in range(1,9):
             for p in htmlSource.xpath('.//*[@id="section"]/div/div[2]/div/div['+str(i)+']/ul'):
                 for j in xrange(1,len(p)+1):
@@ -34,9 +34,9 @@ class Concept():
                 type=key
                 break
         req_url='http://www.ipo3.com'+url
-        http=_http()
+        http=_Http()
         try:
-            htmlSource=http.get_data(req_url=req_url,num=5,type=1)
+            htmlSource=http.getData(req_url=req_url, num=5, type=1)
             text=[]
             for p in htmlSource.xpath('.//*[@id="section"]/div/div[2]/table'):
                 for j in range(2,len(p)+1):
@@ -51,7 +51,7 @@ class Concept():
                     connet.append(type)
                     text.append(tuple(connet))
                 key=('name','stokcode','region','business','transition_type','industry','type')
-                db.insert_tuple('Concept_stoks', key, text, repeat=1)
+                db.insertTuple('Concept_stoks', key, text, repeat=1)
         except Exception,e:
             log('http').log.warning(u'与服务器连接异常,链接:'+req_url)
             log('http').log.warning(e)
@@ -59,5 +59,5 @@ class Concept():
 if __name__ == "__main__":
     Concept=Concept()
     url = (Concept.datalist).values()
-    Threadstart(method=Concept.Conceptlist,arrs=url,num=10)
+    threadStart(method=Concept.Conceptlist, arrs=url, num=10)
     log('http').log.warning(u'概念信息更新成功')

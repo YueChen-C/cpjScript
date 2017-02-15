@@ -1,7 +1,7 @@
 #coding=utf8
 #user表填充
 
-from Clib.Threadhtml import Threadstartone
+from Clib.Threadhtml import ThreadStartone
 from Clib import db
 import random,datetime,time,logging
 from xpinyin import Pinyin
@@ -41,7 +41,7 @@ def testmysql():
             text['first_char']=pinyin.get_initials(name)[0]
             text['created_at']=datetime.datetime.now()
             content.append(tuple(text.values()))
-        db.insert_tuple(table='user',keys=text.keys(),values=content)
-Threadstartone(testmysql,num=5)
+        db.insertTuple(table='user', keys=text.keys(), values=content)
+ThreadStartone(testmysql, num=5)
 end = time.clock()
 print "执行时间: %f s" % (end - start)

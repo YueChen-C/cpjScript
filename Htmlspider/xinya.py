@@ -2,10 +2,10 @@
 #新芽网
 from BeautifulSoup import BeautifulSoup
 from Clib import db
-from Clib.http import _http
+from Clib.http import _Http
 from Clib.httplog import log
 from Clib.config_db import news
-from Clib.Threadhtml import Threadstart
+from Clib.Threadhtml import threadStart
 
 Classify={
     'VC':['http://newseed.pedaily.cn/news/c4210-p',u'引力波'],
@@ -37,8 +37,8 @@ class mian():
         try:
             arr = {}
             # 获取正文信息
-            http = _http()
-            htmlSource = http.get_data(req_url=req_url, num=2)
+            http = _Http()
+            htmlSource = http.getData(req_url=req_url, num=2)
             soup = BeautifulSoup(htmlSource)
             try:
                 arr['website'] = u"新芽"
@@ -68,7 +68,7 @@ class mian():
                 arr['category'] = self.category
                 print u'插入：'+arr['title']
                 key={'title':arr['title'],'category':arr['category']}
-                db.insert_dict(table=self.table, repeat=4,key=key,**arr)
+                db.insertDict(table=self.table, repeat=4, key=key)
             except Exception:
                 log('http').log.exception(req_url+u'新芽网')
                 #去重字段
@@ -76,7 +76,7 @@ class mian():
             log('http').log.exception(req_url+u'新芽网')
 
 
-    def sorts_list(self,page,sorts,olddata=''):
+    def sortsList(self, page, sorts, olddata=''):
         '''
         :param page: 页数
         :param sorts: 分类
@@ -85,8 +85,8 @@ class mian():
         '''
         url=Classify[sorts][0]+str(page)
         self.category=Classify[sorts][1]
-        urlhttp = _http()
-        htmlSource = urlhttp.get_data(req_url=url, num=2)
+        urlhttp = _Http()
+        htmlSource = urlhttp.getData(req_url=url, num=2)
         soup = BeautifulSoup(htmlSource)
         list = []
         title=''
@@ -102,20 +102,20 @@ class mian():
                 title = i.find('a', {"class": "title"}).getText()
                 time = i.find('span', {"class": "date"}).getText()
                 if time<self.time:
-                    Threadstart(self.newseed_text,list,num=3)
+                    threadStart(self.newseed_text, list, num=3)
                     return False
                 #增量添加，查询匹配时返回
                 if olddata:
                     print u'分类:'+self.category,u'新:'+title,u'旧：'+olddata[0]['title'],olddata[0]['release_time'],time
                     if time < str(olddata[0]['release_time']) or olddata[0]['title'] == title:
                         list.pop(-1)
-                        Threadstart(self.newseed_text,list,num=3)
+                        threadStart(self.newseed_text, list, num=3)
                         return False
-            Threadstart(self.newseed_text,list,num=3)
+            threadStart(self.newseed_text, list, num=3)
         except Exception:
             log('http').log.exception(url+u'新芽网')
 
-    def olddata(self,category):
+    def oldData(self, category):
         '''
         :param website: 网站名称
         :param category: 分类名称
@@ -131,9 +131,9 @@ if __name__ == "__main__":
     xinya=mian()
     for sort in xinya.sorts:
         sorts=Classify[sort][1]
-        sqldata=xinya.olddata(sorts)
+        sqldata= xinya.oldData(sorts)
         for page in range(1,100):
-            if xinya.sorts_list(page,sort,sqldata)==False:
+            if xinya.sortsList(page, sort, sqldata)==False:
                 break
 
 
