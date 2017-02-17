@@ -109,4 +109,3 @@ class getRandom():
             return u"测试"+str(random.randint(1,10000))
 
 
-print getRandom().createMail()
