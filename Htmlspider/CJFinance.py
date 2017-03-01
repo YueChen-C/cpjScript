@@ -51,11 +51,11 @@ class Work():
                         key={'title':arr['title'],'category':arr['category']}
                         db.insertDict(table=self.table, repeat=4, key=key)
                     except Exception:
-                        log('db').log.exception(req_url+u'财经网金融')
+                        log('db',req_url + u'财经网金融')
             else:
                 return False
         except Exception:
-                log('http').log.exception(req_url+u'财经网金融')
+                log('http',req_url + u'财经网金融')
 
 
 

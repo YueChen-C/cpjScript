@@ -84,7 +84,7 @@ class _Http(object):
             urllib.urlretrieve(imageUrl,local)
             return imageName
         except Exception:
-            log('http').log.exception(u'文件下载失败'+imageUrl)
+            log('http',u'文件下载失败' + imageUrl)
 
 
     def getData(self, req_url, num=None, type=None):
@@ -118,5 +118,5 @@ class _Http(object):
                 time.sleep(2)
                 return self.getData(req_url=req_url, num=num - 1)
             else:
-                log('http').log.exception(u'与服务器连接异常错误链接'+req_url)
+                log('http',u'与服务器连接异常错误链接' + req_url)
 

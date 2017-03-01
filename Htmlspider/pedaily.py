@@ -66,11 +66,11 @@ class work():
                 arr['category'] = self.category
                 print arr['title']
             except Exception,E:
-                log('http').log.exception(req_url+u'投资界')
+                log('http',req_url + u'投资界')
             key={'title':arr['title'],'category':arr['category']}
             db.insertDict(table=news['table'], repeat=4, key=key)
         except Exception,E:
-            log('http').log.exception(req_url+u'投资界')
+            log('http',req_url + u'投资界')
 
 
     def oldData(self, category):
@@ -113,7 +113,7 @@ class work():
                         return False
             threadStart(self.pedailyText, list, 5)
         except Exception,E:
-            log('http').log.exception(req_url+u'投资界')
+            log('http',req_url + u'投资界')
         return True
 
 

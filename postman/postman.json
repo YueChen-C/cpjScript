@@ -1,0 +1,4875 @@
+{
+ "info": {
+  "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json", 
+  "name": "大时代接口文档", 
+  "_postman_id": "cc32089d-e271-0688-1985-888d64d39aff", 
+  "description": ""
+ }, 
+ "item": [
+  {
+   "item": [
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,可为空,无,平台用户id", 
+         "token,可为空,无,token", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//product/{productId}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "token"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "产品详情接口", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,可为空,无,平台用户id", 
+         "token,可为空,无,token", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//capitals/{,capitalId,}/types/{type}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "token"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "请求方式", 
+      "description": ""
+     }, 
+     "name": "资金详情接口", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,可为空,无,平台用户id", 
+         "token,可为空,无,token", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//projects/{projectId}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "token"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "项目详情接口", 
+     "response": []
+    }
+   ], 
+   "name": "app详情接口", 
+   "description": ""
+  }, 
+  {
+   "item": [
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,发布者用户id,否,1,int", 
+         "productName,产品标题,否,某某产品,String", 
+         "eyeNum,浏览量,否,1,int", 
+         "collectionNum,收藏量,否,1,int", 
+         "shareNum,分享量,否,1,int", 
+         "publishTime,发布时间,否,2016-6-20,String", 
+         "imgUrl,产品展示图,否,http://www.baidu.com,String", 
+         "fundState,基金状态,否,预热,String", 
+         "productType,产品类型,否,契约型,String", 
+         "raiseScale,募集规模,否,5000万,String", 
+         "riskLevel,风险等级,否,平衡机,String", 
+         "incomeType,收益类型,否,类固收,String", 
+         "compareBaseStr,业绩比较基准,是,{},String", 
+         "startInvestmentAmount,起投金额,否,100万,String", 
+         "raiseTime,募集时间,否,2015/3/23-,2016/3/23,String", 
+         "productTerm,产品期限,否,2+1年,String", 
+         "fundManageOrganization,管理机构,否,天星资本,String", 
+         "fundCustodianInstitution,托管机构,否,天星资本,String", 
+         "fileData,提供资料,否,100%,String", 
+         "productHighlights,产品亮点,是,好产品,String", 
+         "raiseIntroduction,募集介绍,否,好产品,String", 
+         "contactPhone,联系电话,是,13522518130,", 
+         "manageFee,管理费,是,100万,String", 
+         "subscriptionFee,认购费,是,100万,String", 
+         "custodianFee,托管费,是,100万,String", 
+         "otherFee,其他费用,是,100万,String", 
+         "wealthAdvisors,,财富顾问,是,{[manager_id:1,name:“财富顾问姓名”,head_url:”www.iamge.greattimes/image/123123.png“,industrys:&quot;TMT/IT/金融&quot;],[],[]},String", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//product/{productId}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "productName"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "eyeNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "collectionNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "shareNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "publishTime"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "imgUrl"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "fundState"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "productType"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "raiseScale"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "riskLevel"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "incomeType"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "compareBaseStr"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "startInvestmentAmount"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "raiseTime"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "productTerm"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "fundManageOrganization"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "fundCustodianInstitution"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "fileData"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "productHighlights"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "raiseIntroduction"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "contactPhone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "manageFee"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "subscriptionFee"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "custodianFee"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "otherFee"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "wealthAdvisors,"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "产品详情", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,发布者用户id,否,1,int", 
+         "threePartyName,三方公司标题,否,某某公司,String", 
+         "eyeNum,浏览量,否,1,int", 
+         "collectionNum,收藏量,否,1,int", 
+         "shareNum,分享量,否,1,int", 
+         "publishTime,发布时间,否,2016-6-20,String", 
+         "imgUrl,公司展示图,否,www.baidu.com,String", 
+         "establishDate,成立时间,否,2016-6-20,String", 
+         "area,所在地区,否,北京,String", 
+         "institutionType,机构类型,否,三方财富公司,String", 
+         "contactPhone,联系电话,否,13522518130,String", 
+         "websiteUrl,公司网址,否,www.txcap.com,String", 
+         "managerialCapital,管理资本量,是,100万,String", 
+         "introduction,企业介绍,否,好企业,String", 
+         "riskManageTeam,风控团队,否,好团队,String", 
+         "investmentDirections,投资方向,否,IT,String", 
+         "strategicPartners,战略合作伙伴,否,天星资本,String", 
+         "startProjects,明星项目,否,json,String", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//threeParty/{threePartyId}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "threePartyName"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "eyeNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "collectionNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "shareNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "publishTime"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "imgUrl"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "establishDate"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "area"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "institutionType"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "contactPhone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "websiteUrl"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "managerialCapital"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "introduction"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "riskManageTeam"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentDirections"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "strategicPartners"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "startProjects"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "资金-三方公司详情", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,发布者用户id,否,1,int", 
+         "name,发布者姓名,否,某某人,String", 
+         "eyeNum,浏览量,否,1,int", 
+         "collectionNum,收藏量,否,1,int", 
+         "shareNum,分享量,否,1,int", 
+         "publishTime,发布时间,否,2016-6-20,String", 
+         "headUrl,头像,否,http:www.baidu.com,String", 
+         "investmentYear,投资年限,否,5年,String", 
+         "introduction,个人介绍,是,我是投资经理,String", 
+         "investmentDirections,投资方向,否,互联网,String", 
+         "investmentStage,投资阶段,否,C轮,String", 
+         "investmentArea,投资地区,否,北京,String", 
+         "startInvestmentAmount,计划投资年限,否,5年,String", 
+         "investmentAmount,计划投资金额,否,100万,String", 
+         "contactPhone,联系电话,否,13522518130,String", 
+         "investmentEvents,投资事件,是,json串,String", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//personalInvestors/{personalInvestorsId}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "name"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "eyeNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "collectionNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "shareNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "publishTime"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "headUrl"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentYear"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "introduction"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentDirections"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentStage"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentArea"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "startInvestmentAmount"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentAmount"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "contactPhone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentEvents"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "资金-个人投资者详情", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,发布者用户id,否,1,int", 
+         "institutionsName,投资机构,标题,否,某某公司,String", 
+         "eyeNum,浏览量,否,1,int", 
+         "collectionNum,收藏量,否,1,int", 
+         "shareNum,分享量,否,1,int", 
+         "publishTime,发布时间,否,2016-6-20,String", 
+         "imgUrl,公司展示图,否,www.baidu.com,String", 
+         "establishDate,成立时间,否,2016-6-20,String", 
+         "area,所在地区,否,北京,String", 
+         "institutionType,机构类型,否,投资机构,String", 
+         "contactPhone,联系电话,否,13522518130,String", 
+         "websiteUrl,公司网址,是,www.txcap.com,String", 
+         "managerialCapital,管理资本量,是,100万,String", 
+         "introduction,企业介绍,是,好企业,String", 
+         "strategicLayout,战略布局,是,好布局,String", 
+         "investmentTeam,投研团队,是,好团队,String", 
+         "investmentDirections,投资方向,否,IT,String", 
+         "investmentStages,投资阶段,否,C轮,String", 
+         "investmentArea,投资地区,否,北京,String", 
+         "strategicPartners,战略合作伙伴,是,天星资本,String", 
+         "investmentEvents,投资事件,是,json,String", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//institutions/{,institutionsId,}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "institutionsName"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "eyeNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "collectionNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "shareNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "publishTime"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "imgUrl"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "establishDate"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "area"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "institutionType"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "contactPhone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "websiteUrl"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "managerialCapital"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "introduction"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "strategicLayout"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentTeam"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentDirections"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentStages"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentArea"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "strategicPartners"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentEvents"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "资金-投资机构", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,发布者用户id,否,1,int", 
+         "projectName,项目标题,否,某某项目,String", 
+         "eyeNum,浏览量,否,1,int", 
+         "collectionNum,收藏量,否,1,int", 
+         "shareNum,分享量,否,1,int", 
+         "publishTime,发布时间,否,2016-6-20,String", 
+         "imgUrl,项目展示图,否,www.iamge.greattimes/image/123123.png,String", 
+         "financingState,融资状态,否,融资中,String", 
+         "projectStage,项目阶段,否,种子轮,String", 
+         "intentionalAmount,意向金额,否,100~300万,String", 
+         "industry,所属行业,否,IT,String", 
+         "financingUse,融资用途,否,融资,String", 
+         "area,所在地区,否,黑龙江-牡丹江,String", 
+         "financingSubject,融资主体,否,个人,String", 
+         "shortestExitYear,最短退出年限,否,5年,String", 
+         "collarVoteInstitution,领投机构,是,天星资本,String", 
+         "financialAmount,已融金额,是,100万,String", 
+         "investExitWay,投资退出方式,否,股权退出,String", 
+         "capitalRatio,投资方占股比例,是,100%,String", 
+         "contactPhone,联系方式,否,13522518130,String", 
+         "fileData,提供资料,否,商业计划书.pdf,String", 
+         "projectOverview,项目概述,是,好项目,String", 
+         "projectAdvantage,项目优势,是,好项目,String", 
+         "videoUrl,路演视频,是,www.video.greattimes/video/123123.mp4,String", 
+         "videoPic,路演视频缩略图,是,www.iamge.greattimes/image/123123.png,String", 
+         "video_type,1本地上上传2链接上传,是,1,int", 
+         "other_remarks,其他备注,是,暂无,String", 
+         "projectManagers,项目经理,是,{[manager_id:1,name:“投资人姓名”,head_url:”,www.iamge.greattimes/image/123123.png,“,industrys:&quot;TMT/IT/金融&quot;],[],[]},String", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//projects/{projectId}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "projectName"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "eyeNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "collectionNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "shareNum"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "publishTime"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "imgUrl"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "financingState"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "projectStage"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "intentionalAmount"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "industry"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "financingUse"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "area"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "financingSubject"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "shortestExitYear"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "collarVoteInstitution"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "financialAmount"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investExitWay"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "capitalRatio"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "contactPhone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "fileData"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "projectOverview"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "projectAdvantage"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "videoUrl"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "videoPic"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "video_type"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "other_remarks"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "projectManagers"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "项目详情", 
+     "response": []
+    }
+   ], 
+   "name": "h5接口模块", 
+   "description": ""
+  }, 
+  {
+   "item": [
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "offset,不为空,long (&gt;=0),返回记录的开始位置（上条记录最后id）。0表示下拉刷新；其它值表示上拉加载", 
+         "limit,可为空,int（默认10条）,返回记录的数量", 
+         "rank,不为空,int,1为时间排序，2为热度排序", 
+         "fundState,可为空,String（使用英文半角逗号拼接）,基金状态", 
+         "incomeType,可为空,String（使用英文半角逗号拼接）,收益类型", 
+         "productTermRange,可为空,String（使用英文半角逗号拼接）,产品期限", 
+         "riskLevel,可为空,String（使用英文半角逗号拼接）,风险等级", 
+         "startInvestmentAmount,可为空,String（使用英文半角逗号拼接）,起投金额", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//product", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "offset"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "limit"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "rank"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "fundState"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "incomeType"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "productTermRange"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "riskLevel"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "startInvestmentAmount"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "产品 列表", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "无,-,-,-", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/products/get,Filtrate", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "无"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "产品条件筛选项", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "字段名,是否为空,示例值,说明", 
+         "name,否,String,项目模糊查询", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/fuzzyQuerys/products", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "name"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "产品模糊搜索", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "token,不为空,String,-", 
+         "name,不为空,String,姓名", 
+         "phone,不为空,String,手机号", 
+         "code,不为空,String,手机验证码", 
+         "amount,不为空,double,金额", 
+         "amountUnit,不为空,Int,金额单位（1:万元2:亿元）", 
+         "describe,可为空,String,预约详情", 
+         "productId,不为空,Int,所预约产品id", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//products/{productId}/appointment", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "token"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "name"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "phone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "code"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "amount"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "amountUnit"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "describe"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "productId"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "发起预约", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "字段名,是否为空,示例值,说明", 
+         "advisorId,否,int,财富顾问(产品)id", 
+         "productId,否,int,所属三方财富公司id", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//products/{productId}/advisor/{advisorId}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "advisorId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "productId"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "财富顾问(产品)", 
+     "response": []
+    }
+   ], 
+   "name": "产品 模块", 
+   "description": ""
+  }, 
+  {
+   "item": [
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,用户通用Id,否,,int", 
+         "name,姓名,是,,String", 
+         "gender,性别,是,1:男 2:女,int", 
+         "phone,联系电话,否,,String", 
+         "province,省,是,,String", 
+         "city,市,是,,String", 
+         "post,职位,是,,String", 
+         "enterpriseName,企业全称,否,,String", 
+         "industry,所属行业,是,1，2，3,int", 
+         "email,邮箱,是,,String", 
+         "introduction,个人简介,是,,String", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/personAccountEdit", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "name"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "gender"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "phone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "province"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "city"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "post"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "enterpriseName"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "industry"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "email"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "introduction"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "个人账户编辑", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,否,13,用户通用Id", 
+         "type,否,1,1：个人账户 2：企业账户", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/personAccountInfo", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "个人账户详情", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,用户通用Id,否,13,int", 
+         "name,姓名,,,String", 
+         "enterpriseCode,企业代码,是,,String", 
+         "businessLicenseurl,营业执照,是,,String", 
+         "businessContacts,企业联系人,是,,String", 
+         "phone,联系电话,是,,String", 
+         "province,省,,,String", 
+         "city,市,,,String", 
+         "contactPhone,企业联系电话,是,,String", 
+         "enterpriseName,企业全称,是,,String", 
+         "industry,所属行业,,,String", 
+         "email,邮箱,是,,String", 
+         "introduction,企业简介,,,String", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/enterpriseAccountEdit", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "name"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "enterpriseCode"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "businessLicenseurl"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "businessContacts"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "phone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "province"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "city"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "contactPhone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "enterpriseName"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "industry"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "email"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "introduction"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "企业账户编辑", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,否,13,用户通用Id", 
+         "type,否,2,1：个人账户 2：企业账户", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/enterpriseAccountInfo", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "企业账户详情", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         ",,", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/sendDeliveryList", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": ""
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "发起的投递列表", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         ",,", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//meetings/accepted", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": ""
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "发起的预约列表", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,否,15,用户通用Id", 
+         "type,否,1,1：收入证明 2：资产证明", 
+         "file,否,,上传文件", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/investorAuthenticate", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "file"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "合格投资者认证", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,否,15,用户通用Id", 
+         "name,否,,姓名", 
+         "idCard,否,,身份证", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/nameAuthenticate", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "name"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "idCard"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "实名认证", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "publishTime,否,26,26：全部 27：一周内 28：两周内 29：一个月内 30：三个月内 31：六个月内 32：一年内", 
+         "checkType,否,3,0：待审核 1：审核通过 2：审核未通过 3：全部", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//infos", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "publishTime"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "checkType"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "已发布信息 列表", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "type,否,默认值1,1：投资相关,2：账户相关", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/commonProblem", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "常见问题", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         ",,", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//meetings/accepted", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": ""
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "我的投递/收到的投递列表", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "type,否,3,3：:产品", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//collections/modules/{m_id}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "我的收藏_产品", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "type,否,4,4：:资讯", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//collections/modules/{m_id}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "我的收藏_资讯", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "type,否,2,2：:资金", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//collections/modules/{m_id}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "我的收藏_资金", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "type,否,1,1：:项目", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//collections/modules/{m_id}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "我的收藏_项目", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "type,1：预约/推荐,2：系统消息,是(默认)", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/myMessage", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "我的消 息", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "type,否（默认1）,1,1:预约/推荐 2:系统消息", 
+         "id,否,15,当前对应删除类型的Id", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/msgDelete", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "id"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "我的消息删除", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         ",,", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//meetings/sended", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": ""
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "我的预约/收到的预约列表", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         ",,", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/industry", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": ""
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "所属行业", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         ",,", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/investorRiskInvestigate", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": ""
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "投资者风险问卷调查", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "type,否（默认1）,1,1:投递 2:约谈 3:发布项目", 
+         "id,否,15,当前对应删除类型的Id", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//meetings/{m_ids}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "id"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "投递/约谈/发布项目_通用删除", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "projectId,项目Id,是", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/sendProjectInfo", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "projectId"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "投递项目详情", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "type,否（默认1）,1,1：项目 2：资金 3：产品 4：资讯", 
+         "id,否,15,当前对应删除类型的Id", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/collectionDelete", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "id"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "收藏删除", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,用户通用Id,否,,int", 
+         "headUrl,头像,是,,String", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/uploadHead", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "headUrl"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "用户头像上传", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "version,否,1,版本号码", 
+         "totalScore,否,86,总分", 
+         "userId,否,15,用户通用Id", 
+         "optionResult,否,1,2,1,3,4,1,2,用户选择答案用英文逗号分隔", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/questionnaireSubmit", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "version"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "totalScore"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "optionResult"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "问卷调查提交", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "productId,预约Id,是", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/userCenter/reservationInfo", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "productId"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "预约详情", 
+     "response": []
+    }
+   ], 
+   "name": "用户中心模块", 
+   "description": ""
+  }, 
+  {
+   "item": [
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "headFile,不为空,-,文件流", 
+         "token,不为空,-,-", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/login/uploadHeadPortrait", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "headFile"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "token"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "上传头像", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "code,不为空,String,手机验证码", 
+         "phone,不为空,String,用户手机号", 
+         "password,不为空,String,用户密码", 
+         "type,不为空,int,账号类型", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/login/register", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "code"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "phone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "password"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "大时代平台注册", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "phone,不为空,-,用户手机号", 
+         "password,不为空,-,用户密码", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/login/dsdLogin", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "phone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "password"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "大时代平台登陆", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "phone,不为空,-,用户手机号", 
+         "type,不为空,-,类型：1为注册，2为手机验证码登陆，3为找回密码/修改手机号，4为业务方面手机验证码", 
+         "uniqueId,不为空,-,手机唯一标识", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/login/,phoneVerificationCode", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "phone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "uniqueId"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "大时代平台获取手机验证码", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "字段名,是否为空,示例值,说明", 
+         "type,否,int类型,详情见type表", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/login/getDictionaryData", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "字段名"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "字典项数据", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "phone,不为空,String,手机号", 
+         "code,不为空,String,验证码", 
+         "password,不为空,String,新密码", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//login/,forgetPassword", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "phone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "code"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "password"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "忘记 密码", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "headFile,可为空,File,头像", 
+         "enterpriseName,不为空,String,企业全称", 
+         "enterpriseType,不为空,int,企业代码类型", 
+         "enterpriseCode,不为空,String,企业代码", 
+         "businessLicenseFile,不为空,File,营业执照原件", 
+         "phone,不为空,String,手机号", 
+         "email,不为空,String,邮箱", 
+         "businessContacts,不为空,String,企业联系人", 
+         "contactPhone,不为空,String,企业联系人电话", 
+         "province,可为空,String,省份", 
+         "city,可为空,String,城市", 
+         "industryId,可为空,String,所属行业value值", 
+         "introduction,可为空,String,企业简介", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/login/,perfectEnterpriseData", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "headFile"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "enterpriseName"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "enterpriseType"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "enterpriseCode"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "businessLicenseFile"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "phone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "email"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "businessContacts"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "contactPhone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "province"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "city"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "industryId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "introduction"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "提交完善资料接口(企业)", 
+     "response": []
+    }
+   ], 
+   "name": "登陆与注册", 
+   "description": ""
+  }, 
+  {
+   "item": [
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,,用户通用Id,是", 
+         "pwd,原密码,是", 
+         "newPwd,新密码,是", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/option/modifyPassword", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "pwd"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "newPwd"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "修改 密码", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,用户通用Id,是", 
+         "mobilePhone,原手机号,是", 
+         "newM,obile,Phone,新手机号,是", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/option/modifyMobilePhone", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "mobilePhone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "newM,obile,Phone"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "修改 手机号", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,用户通用Id,是", 
+         "email,邮箱,是", 
+         "new,Email,新邮箱,是", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/option/modifyEmail", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "email"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "new,Email"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "修改 邮箱", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,用户通用Id,是", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/option/emailVerification", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "发送邮箱验证码", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "type,不为空,1:ios 2:android,int", 
+         "feedback,不为空,,反馈意见", 
+         "imgUrl,可以为空,,文件域形式上传", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/option/ideaComeBack", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "feedback"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "imgUrl"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "意见 反馈", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,用户通用Id,是", 
+         "newMobilePhone,新手机号,是", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/option/verifyMobilePhone", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "newMobilePhone"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "手机号校验", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "versionName,版本名称,,String", 
+         "downUrl,版本地址,,String", 
+         "versionDate,版本日期,,datetime", 
+         "versionNumber,版本号,,String", 
+         "versionExplain,版本说明,1：更新某某$2:更新某某,String", 
+         "isForce,是否强制更新,0：是 1：否,int", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//option/versionUpdate", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "versionName"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "downUrl"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "versionDate"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "versionNumber"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "versionExplain"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "isForce"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "版本 更新", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,用户通用Id,是", 
+         "phone,用户登陆手机号,是", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//option/loginOut", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "phone"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "退出 登录", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "userId,用户通用Id,是", 
+         "newEmail,新邮箱,是", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/option/verifyEmail", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "userId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "newEmail"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "邮箱校验", 
+     "response": []
+    }
+   ], 
+   "name": "设 置", 
+   "description": ""
+  }, 
+  {
+   "item": [
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "token,不为空,String,-", 
+         "name,不为空,String,姓名", 
+         "phone,不为空,String,手机号", 
+         "code,不为空,String,手机验证码", 
+         "title,不为空,String,产品名称", 
+         "describe,可为空,Int,产品描述", 
+         "capitalId,不为空,int,所投递用产品id", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//capitals/{capitalId}/mailings", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "token"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "name"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "phone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "code"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "title"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "describe"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "capitalId"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "发起投递", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "字段名,是否为空,示例值,说明", 
+         "investmentManagerId,否,int,投资经理id", 
+         "institutionsId,否,int,所属投资机构id", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//capitals/{institutionsId}/investmentManager/{investmentManagerId}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentManagerId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "institutionsId"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "投资经理", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "字段名,是否为空,示例值,说明", 
+         "wealthAdvisorId,否,int,财富顾问id", 
+         "threePartyId,否,int,所属三方财富公司id", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//capitals/{threePartyId}/wealthAdvisors/{wealthAdvisorId}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "wealthAdvisorId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "threePartyId"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "财富顾问", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "offset,不为空,long (&gt;=0),返回记录的开始位置（上条记录最后id）。0表示下拉刷新；其它值表示上拉加载", 
+         "limit,可为空,int（默认10条）,返回记录的数量", 
+         "rank,不为空,int,1为时间排序，2为热度排序", 
+         "type,可为空,String（使用英文半角逗号拼接）,资方类型", 
+         "investmentDirection,可为空,String（使用英文半角逗号拼接）,投资方向:1,2,3,4", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//capitals", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "offset"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "limit"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "rank"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "investmentDirection"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "资金 列表", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "无,-,-,-", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//conditions/products", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "无"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "资金条件筛选项", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "字段名,是否为空,示例值,说明", 
+         "name,否,String,资金模糊查询", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/fuzzyQuerys/capitals", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "name"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "资金模糊搜索", 
+     "response": []
+    }
+   ], 
+   "name": "资金 模块", 
+   "description": ""
+  }, 
+  {
+   "item": [
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "token,不为空,String,-", 
+         "name,不为空,String,姓名", 
+         "phone,不为空,String,手机号", 
+         "code,不为空,String,手机验证码", 
+         "describe,可为空,String,约谈说明", 
+         "projectId,不为空,Int,所约谈用项目id", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//projects/{p_id}/meetings", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "token"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "name"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "phone"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "code"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "describe"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "projectId"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "发起约谈", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "offset,不为空,long (&gt;=0),返回记录的开始位置（上条记录最后id）。0表示下拉刷新；其它值表示上拉加载", 
+         "limit,可为空,int（默认10条）,返回记录的数量", 
+         "rank,不为空,int,1为时间排序，2为热度排序", 
+         "financingState,可为空,String（使用英文半角逗号拼接）,项目状态", 
+         "region,可为空,String（使用英文半角逗号拼接）,所在地区", 
+         "industry,可为空,String（使用英文半角逗号拼接）,所属行业", 
+         "projectStage,可为空,String（使用英文半角逗号拼接）,项目阶段", 
+         "intentionalAmount,可为空,String（使用英文半角逗号拼接）,意向金额", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//projects", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "offset"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "limit"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "rank"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "financingState"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "region"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "industry"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "projectStage"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "intentionalAmount"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "项目 列表", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "无,-,-,-", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//conditions/projects", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "无"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "项目条件筛选项", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "字段名,是否为空,示例值,说明", 
+         "name,否,String,项目模糊查询", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/fuzzyQuerys/projects", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "name"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "项目模糊搜索", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "字段名,是否为空,示例值,说明", 
+         "managerId,否,int,项目经理id", 
+         "projectId,否,int,项目id", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//projects/{projectId}/manager/{managerId}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "managerId"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "projectId"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "项目经理主页", 
+     "response": []
+    }
+   ], 
+   "name": "项目 模块", 
+   "description": ""
+  }, 
+  {
+   "item": [
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "字段名,是否为空,示例值,说明", 
+         "token,否,-,-", 
+         "type,否,int,1：项目2：资金3：产品4：资讯", 
+         "fid,否,int,所收藏 id", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/collections/{type}/{fid}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "token"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "fid"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "取消 收藏", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "字段名,是否为空,示例值,说明", 
+         "token,否,-,-", 
+         "type,否,int,1：项目2：资金3：产品4：资讯", 
+         "fid,否,int,所收藏 id", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/collections/{type}/{fid}", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "token"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "fid"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "收藏", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "字段名,是否为空,示例值,说明", 
+         "type,否,1,热搜类型1首页2资讯热搜", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/homePage/hotSearch", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "字段名"
+        }, 
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "type"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "热搜榜", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "字段名,是否为空,示例值,说明", 
+         "token,不登陆可为空,-,-", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}//homePage", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "token"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "GET", 
+      "description": ""
+     }, 
+     "name": "首页接口", 
+     "response": []
+    }, 
+    {
+     "event": [
+      {
+       "script": {
+        "type": "text/javascript", 
+        "exec": [
+         "/*", 
+         "参数名,是否可空,默认值,备注", 
+         "value,不为空,String,用户输入搜索项", 
+         "*/"
+        ]
+       }, 
+       "listen": "prerequest"
+      }
+     ], 
+     "request": {
+      "url": "{{url}}/homePage/seek", 
+      "header": [
+       {
+        "value": "{{token}}", 
+        "key": "token", 
+        "description": ""
+       }, 
+       {
+        "value": "{{appversion}}", 
+        "key": "appversion", 
+        "description": ""
+       }
+      ], 
+      "body": {
+       "formdata": [
+        {
+         "enabled": true, 
+         "type": "text", 
+         "value": "", 
+         "key": "value"
+        }
+       ], 
+       "mode": "formdata"
+      }, 
+      "method": "POST", 
+      "description": ""
+     }, 
+     "name": "首页搜索", 
+     "response": []
+    }
+   ], 
+   "name": "首页信息接口", 
+   "description": ""
+  }
+ ], 
+ "variables": []
+}

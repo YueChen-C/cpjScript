@@ -53,11 +53,9 @@ class Concept():
                 key=('name','stokcode','region','business','transition_type','industry','type')
                 db.insertTuple('Concept_stoks', key, text, repeat=1)
         except Exception,e:
-            log('http').log.warning(u'与服务器连接异常,链接:'+req_url)
-            log('http').log.warning(e)
+            log('http',u'与服务器连接异常,链接:' + req_url)
 
 if __name__ == "__main__":
     Concept=Concept()
     url = (Concept.datalist).values()
     threadStart(method=Concept.Conceptlist, arrs=url, num=10)
-    log('http').log.warning(u'概念信息更新成功')

@@ -77,9 +77,9 @@ class Work():
                 key={'title':arr['title'],'category':arr['category']}
                 db.insertDict(table=self.table, repeat=4, key=key)
             except Exception:
-                log('http').log.exception(req_url+u'财经网')
+                log('http',req_url + u'财经网')
         except Exception:
-                log('http').log.exception(req_url+u'财经网')
+                log('http',req_url + u'财经网')
 
 
     def index(self,url,category):

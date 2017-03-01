@@ -70,10 +70,10 @@ class mian():
                 key={'title':arr['title'],'category':arr['category']}
                 db.insertDict(table=self.table, repeat=4, key=key)
             except Exception:
-                log('http').log.exception(req_url+u'新芽网')
+                log('http',req_url + u'新芽网')
                 #去重字段
         except Exception:
-            log('http').log.exception(req_url+u'新芽网')
+            log('http',req_url + u'新芽网')
 
 
     def sortsList(self, page, sorts, olddata=''):
@@ -113,7 +113,7 @@ class mian():
                         return False
             threadStart(self.newseed_text, list, num=3)
         except Exception:
-            log('http').log.exception(url+u'新芽网')
+            log('http',url + u'新芽网')
 
     def oldData(self, category):
         '''

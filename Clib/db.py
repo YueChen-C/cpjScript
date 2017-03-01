@@ -56,7 +56,7 @@ class Connection():
             create.commit()
             return r
         except Exception:
-            log('db').log.exception(sql+u"执行失败")
+            log('db',sql + u"执行失败")
             create.rollback()
         finally:
             cursors.close()
@@ -71,7 +71,7 @@ class Connection():
             create.commit()
             return r
         except Exception:
-            log('db').log.exception(sql+u"执行失败")
+            log('db',sql + u"执行失败")
             create.rollback()
         finally:
             cursors.close()
@@ -85,7 +85,7 @@ class Connection():
             r = cursors.rowcount
             return r
         except Exception:
-            log('db').log.exception(sql+u"执行失败")
+            log('db',sql + u"执行失败")
         finally:
             cursors.close()
 
@@ -107,7 +107,7 @@ class Connection():
                 else:
                     return [Dict(names1, x) for x in cursore.fetchall()]
         except Exception:
-            log('db').log.exception(sql+u"执行失败")
+            log('db',sql + u"执行失败")
 
         finally:
             cursore.close()
