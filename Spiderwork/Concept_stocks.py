@@ -16,7 +16,7 @@ class Concept():
         transition=[]
         req_url = 'http://www.ipo3.com/strategy-category.html'
         http=_Http()
-        htmlSource=http.getData(req_url=req_url, num=5, type=1)
+        htmlSource = http.getData(req_url=req_url, num=5)
         for i in range(1,9):
             for p in htmlSource.xpath('.//*[@id="section"]/div/div[2]/div/div['+str(i)+']/ul'):
                 for j in xrange(1,len(p)+1):
@@ -36,7 +36,7 @@ class Concept():
         req_url='http://www.ipo3.com'+url
         http=_Http()
         try:
-            htmlSource=http.getData(req_url=req_url, num=5, type=1)
+            htmlSource = http.getData(req_url=req_url, num=5)
             text=[]
             for p in htmlSource.xpath('.//*[@id="section"]/div/div[2]/table'):
                 for j in range(2,len(p)+1):

@@ -1,11 +1,13 @@
 # -*-coding: utf-8 -*-
 #财经网金融
 from BeautifulSoup import BeautifulSoup
+
 from Clib import db
-from Clib.http import _Http
 from Clib.Threadhtml import threadStart
 from Clib.config_db import news
+from Clib.http import _Http
 from Clib.httplog import log
+
 
 class Work():
     def __init__(self):

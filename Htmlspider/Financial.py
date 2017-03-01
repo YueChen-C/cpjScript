@@ -1,11 +1,12 @@
 # -*-coding: utf-8 -*-
 #财经网
 from BeautifulSoup import BeautifulSoup
+
 from Clib import db
-from Clib.http import _Http
-from Clib.httplog import log
 from Clib.Threadhtml import threadStart
 from Clib.config_db import news
+from Clib.http import _Http
+from Clib.httplog import log
 
 Classify={
     'ZQYW':['http://stock.caijing.com.cn/stocknews/',u'要闻'],

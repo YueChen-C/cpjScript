@@ -17,7 +17,7 @@ class Down():
         url='http://www.neeq.com.cn/info/list.do?callback=jQuery18302463568950221321_1467704895415'
         data='keywords=&page=0&pageSize=60&nodeId=131'
         http=_Http(data=data)
-        text=http.getData(req_url=url, num=3)
+        text = http.getData(req_url=url, num=3)
         htmljson= self.htmlJson(text)
         content=htmljson[0]['data']['content']
         for i in range(0,len(content)):
@@ -32,7 +32,7 @@ class Down():
         url='http://www.neeq.com.cn/info/list.do?callback=jQuery18302463568950221321_1467704895415'
         data='keywords=&page=2&pageSize=60&nodeId=133'
         http=_Http(data=data)
-        text=http.getData(req_url=url, num=3)
+        text = http.getData(req_url=url, num=3)
         htmljson= self.htmlJson(text)
         pagenum=int(htmljson[0]['data']['totalPages'])
         return pagenum
@@ -42,7 +42,7 @@ class Down():
         url='http://www.neeq.com.cn/info/list.do?callback=jQuery18302463568950221321_1467704895415'
         data='keywords=&page=%s&pageSize=60&nodeId=133'%page
         http=_Http(data=data)
-        text=http.getData(req_url=url, num=3)
+        text = http.getData(req_url=url, num=3)
         htmljson= self.htmlJson(text)
         content=htmljson[0]['data']['content']
         for i in range(0,len(content)):

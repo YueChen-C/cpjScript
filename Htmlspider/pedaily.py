@@ -1,15 +1,13 @@
 # -*-coding: utf-8 -*-
 #投资界
-import os
 
 from BeautifulSoup import BeautifulSoup
+
 from Clib import db
 from Clib.Threadhtml import threadStart
+from Clib.config_db import news
 from Clib.http import _Http
 from Clib.httplog import log
-from Clib.config_db import news
-
-
 
 Classify={
     'PE':['http://pe.pedaily.cn/top/handlers/Handler.ashx?action=newslist-all&p=%s&url=http://pe.pedaily.cn/top/newslist.aspx?p=1',u'VC/PE'],

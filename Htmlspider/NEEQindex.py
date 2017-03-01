@@ -1,10 +1,14 @@
-from Clib.http import _Http
+import json
+import re
+
 from Clib import db
-import re,json
+from Clib.http import _Http
+
+
 def index():
     url='http://www.neeq.com.cn/neeqController/getNeeqList.do?callback=jQuery18303443067020250625_1468897955504'
     http=_Http()
-    content=http.getData(req_url=url, num=3)
+    content = http.getData(req_url=url, num=3)
     pattern = re.compile(r'\[.*\]', re.DOTALL).findall(content)
     htmljson = json.loads("".join(pattern))
     data=db.select(key='SELECT * FROM `neeq_index` ',type=1)

@@ -3,6 +3,7 @@ import json
 import os
 
 import openpyxl
+
 from Clib.Threadhtml import threadStart
 from Clib.http import _Http
 
@@ -56,7 +57,7 @@ class read_xsls():
                 'appversion':"1.8"}
         http = _Http(header=header, data=data)
         self.code = http.getCode(req_url=url)
-        work_data=http.getData(req_url=url, num=3, type=2)
+        work_data = http.getData(req_url=url, num=3)
         return work_data
 
 

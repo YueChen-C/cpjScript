@@ -5,6 +5,7 @@ import os
 import re
 
 import openpyxl
+
 from Clib import db
 from Clib.Threadhtml import threadStart
 from Clib.http import _Http
@@ -28,7 +29,7 @@ class down():
         url='http://www.neeq.com.cn/info/list.do?callback=jQuery183012995692230096056_1467603134815'
         data='keywords=&page=0&pageSize=10&nodeId=259'
         http=_Http(data=data)
-        content=http.getData(req_url=url, num=3)
+        content = http.getData(req_url=url, num=3)
         pattern = re.compile(r'\[.*\]', re.DOTALL).findall(content)
         htmljson = json.loads("".join(pattern))
         down_url="http://www.neeq.com.cn"+htmljson[0]['data']['content'][0]['fileUrl']

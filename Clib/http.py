@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 #http数据请求
-import urllib2,urllib
-import lxml.html as HTML
-import json,os,gzip
 import cookielib
-from random import choice
+import gzip
+import os
 import time
-from Clib.httplog import log
+import urllib
+import urllib2
 from StringIO import StringIO
+from random import choice
 
-
-
+from Clib.httplog import log
 
 
 class _Http(object):
@@ -86,12 +85,10 @@ class _Http(object):
         except Exception:
             log('http',u'文件下载失败' + imageUrl)
 
-
-    def getData(self, req_url, num=None, type=None):
+    def getData(self, req_url, num=None):
         '''
         :param req_url: 要获取的url
         :param num: 重试次数
-        :param type: 解析类型1=xpath，2=json
         '''
         try:
             get_req= self.getReq(req_url)
@@ -105,13 +102,6 @@ class _Http(object):
                 pass
             else:
                 content = content.decode('utf-8')
-            if type==1:
-                htmlxpath = HTML.fromstring(content)
-                return htmlxpath
-            elif type==2:
-                str = "".join(content)
-                htmljson = json.loads(str)
-                return htmljson
             return content
         except Exception:
             if num > 0:
