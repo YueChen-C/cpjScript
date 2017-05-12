@@ -110,3 +110,7 @@ class _Http(object):
             else:
                 log('http',u'与服务器连接异常错误链接' + req_url)
 
+
+
+
+

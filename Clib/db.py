@@ -93,7 +93,7 @@ class Connection():
         '''
         :param sql:
         :param type:type=1时，返回字段名
-        :return:
+        :return
         '''
         cteate = CreateMysql()
         cursore = None
@@ -242,7 +242,7 @@ def createTable(table, keys):
 
 def select(key,table='',type=''):
     '''
-    :param content: 多条件字典['id':'1','title':'test']
+    :param key: 多条件字典['id':'1','title':'test']
     :param table: 表名称
     :param type: type=1时查询字段名
     :return:

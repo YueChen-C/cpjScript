@@ -66,7 +66,7 @@ class work():
             except Exception,E:
                 log('http',req_url + u'投资界')
             key={'title':arr['title'],'category':arr['category']}
-            db.insertDict(table=news['table'], repeat=4, key=key)
+            db.insertDict(table=news['table'], repeat=4, key=key,**arr)
         except Exception,E:
             log('http',req_url + u'投资界')
 

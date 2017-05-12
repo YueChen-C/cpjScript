@@ -18,7 +18,7 @@ def index():
             if k not in data:
                 htmljson[i].pop(k)
         print htmljson[i]
-        db.insertDict(table='neeq_index',repeat=3,**htmljson[i])
+        db.insertDict(table='neeq_index', repeat=3, **htmljson[i])
 
 if __name__ == "__main__":
     index()

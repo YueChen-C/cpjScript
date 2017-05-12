@@ -69,7 +69,7 @@ class mian():
                 arr['category'] = self.category
                 print u'插入：'+arr['title']
                 key={'title':arr['title'],'category':arr['category']}
-                db.insertDict(table=self.table, repeat=4, key=key)
+                db.insertDict(table=self.table, repeat=4, key=key,**arr)
             except Exception:
                 log('http',req_url + u'新芽网')
                 #去重字段

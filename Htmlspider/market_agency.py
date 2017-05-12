@@ -26,7 +26,7 @@ class Down():
             arr['website']=content[i]['linkUrl']
             print arr
             key={'name':arr['name']}
-            db.insertDict(table='lawyers', repeat=4, key=key)
+            db.insertDict(table='lawyers', repeat=4, key=key,**arr)
 
     def pageNum(self):
         url='http://www.neeq.com.cn/info/list.do?callback=jQuery18302463568950221321_1467704895415'
@@ -51,7 +51,7 @@ class Down():
             arr['website']=content[i]['linkUrl']
             print arr
             key={'name':arr['name']}
-            db.insertDict(table='lawyers', repeat=4, key=key)
+            db.insertDict(table='lawyers', repeat=4, key=key,**arr)
 
 
 if __name__ == "__main__":

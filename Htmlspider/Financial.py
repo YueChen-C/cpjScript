@@ -76,7 +76,7 @@ class Work():
                 print arr['title']
                 #去重字段
                 key={'title':arr['title'],'category':arr['category']}
-                db.insertDict(table=self.table, repeat=4, key=key)
+                db.insertDict(table=self.table, repeat=4, key=key,**arr)
             except Exception:
                 log('http',req_url + u'财经网')
         except Exception:
