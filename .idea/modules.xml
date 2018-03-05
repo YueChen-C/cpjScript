@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/cpjspider.iml" filepath="$PROJECT_DIR$/.idea/cpjspider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../xsdlocust/.idea/xsdlocust.iml" filepath="$PROJECT_DIR$/../xsdlocust/.idea/xsdlocust.iml" />
     </modules>
   </component>
 </project>
